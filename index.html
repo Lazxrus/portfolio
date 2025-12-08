@@ -1,13 +1,133 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<!-- TODO: Add SVG logo -->
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Primary tags -->
+		<title>Ivo - Backend Developer</title>
+		<meta name="description" content="Ivo Vallejos: Junior Backend Developer specializing in Python, Data Analysis, RESTful APIs, Databases" />
+		<meta name="author" content="Ivo Vallejos, MD Sahil" />
+		<meta name="robots" content="index, follow, max-image-preview:large" />
+
+		<!-- SEO URL -->
+		<link rel="canonical" href="https://somewebsite.com" />
+
+		<!-- Open Graph / Facebook -- Shows cool preview when sharing the URL -->
+		<meta property="og:title" content="Ivo Vallejos - Backend Developer | Python Specialist" />
+		<meta property="og:description" content="Junior Backend Developer specializing in Python. Analyzing data and making it digestible." />
+		<!-- TODO add image link -->
+		<meta property="og:image" content="https://somewebsite.com" />
+		<meta property="og:image:width" content="1200" />
+    	<meta property="og:image:height" content="630" />
+    	<meta property="og:url" content="https://somewebsite.com" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Ivo Vallejos - Portfolio" />
+		<meta property="og:locale" content="en_US" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Ivo Vallejos - Backend Developer | Python Specialist" />
+		<meta name="twitter:description" content="Junior Backend Developer specializing in Python. Analyzing data and making it digestible." />
+		<meta name="twitter:image" content="https://somewebsite.com" />
+		<!-- TODO add Twitter Handle - site is a company and creator is a person -->
+		<meta name="twitter:site" content="@someuser" />
+		<meta name="twitter:creator" content="@someuser" />
+
+		<!-- Additional SEO tags -->
+		<meta name="theme-color" content="#3b82f6" />
+		<meta name="msapplication-TileColor" content="#3b82f6" />
+		<!-- TODO add icon? -->
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+		<!-- Preload critical resources -->
+		<link rel="preload" href="src/main.jsx" as="script" />
+
+		<!-- Structured Data (JSON-LD) - Enhanced -->
+		<!-- TODO Change job title, site & image -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Ivo Vallejos",
+				"url": "https://somewebsite.com",
+				"image": "https://somewebsite.com",
+				"sameAs": [
+					"https://github.com/Lazxrus",
+					"https://www.linkedin.com/in/ivovallejos/",
+					"https://x.com/idkaboutthisone"
+				],
+				"jobTitle": "Backend Developer",
+				"worksFor": {
+					"@type": "Organization",
+					"name": "Freelance"
+				},
+				"knowsAbout": [
+					"Python",
+					"RESTful API",
+					"SQL",
+					"Data Analysis",
+					"Backend Development"
+				],
+				"description": "Junior Backend Developer specializing in  Python. Analyzing data and making it digestible."
+			}
+		</script>
+
+		<!-- Additional schema for Website -->
+		 <!-- TODO add website URL -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+        		"@type": "WebSite",
+				"name": "Ivo Vallejos",
+				"url": "https://somewebsite.com",
+				"description": "Portfolio of Ivo Vallejos, Backend Developer specializing in Python",
+				"author": {
+					"@type": "Person",
+					"name": "Ivo Vallejos, MD Sahil"
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<!-- Skip to main content for accessibility -->
+		<a href="#main-content" class="skip-link">Skip to main content</a>
+
+		<!-- Semantic HTML structure for SEO -->
+		<header role="banner">
+			<nav role="navigation" aria-label="Main navigation">
+				<!-- Nav content by React -->
+			</nav>
+		</header>
+
+		<main id="main-content" role="main">
+			<div id="root"></div>
+		</main>
+
+		<footer role="contentinfo">
+			<!-- footer by React -->
+		</footer>
+
+		<script type="module" src="/src/main.tsx"></script>
+
+		<style>
+			/* Basic accessibility styles */
+			.skip-link {
+				position: absolute;
+				top: -40px;
+				left: 6px;
+				background: #000;
+				color: white;
+				padding: 8px;
+				z-index: 100;
+				text-decoration: none;
+			}
+
+			.skip-link:focus {
+				top: 0;
+			}
+		</style>
+	</body>
 </html>
