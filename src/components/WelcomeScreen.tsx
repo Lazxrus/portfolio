@@ -134,6 +134,15 @@ const WelcomeScreen = ({ onWelcomeComplete }) => {
                 initial="hidden"
                 animate={exitAnimation ? "exit" : "visible"}
             >
+                {/* Animated background elements - scaled down for mobile */}
+                <motion.div className="absolute inset-0 -z-10 overflow-hidden opacity-20">
+                    <motion.div
+                        className="absolute top-1/4 left-1/4 w-32 h-32 md:w-64 md:h-64 rounded-full blur-[50px]"
+                        style={{
+                        }}
+                    >
+                    </motion.div>
+                </motion.div>
             </motion.div>
         </div>
     )
