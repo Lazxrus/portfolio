@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { useTheme } from "next-themes";
-import { backup } from "node:sqlite";
 
 const WelcomeScreen = ({ onWelcomeComplete }) => {
     const [phase, setPhase] = useState(0);
@@ -30,7 +29,7 @@ const WelcomeScreen = ({ onWelcomeComplete }) => {
 
     // TODO: Add portfolioURL
     const currentColors = colors[theme] || colors.dark;
-    const portfolioUrl = "addlink.con"
+    const portfolioUrl = "add-link.con"
     const welcomeMessages = [
         "Crafting digital experiences",
         "Backend Developer",
