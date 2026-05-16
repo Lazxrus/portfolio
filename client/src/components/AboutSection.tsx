@@ -3,21 +3,24 @@ import { FaUser, FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaCode, FaStar, Fa
 import { Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const AboutSection = () => {
-    const [activeTab, setActiveTab] = useState('personal');
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [counter, setCounterState] = useState(0);
+export const AboutSection: React.FC = () => {
+    // ! TODO: Update tab keys if you add/remove tabs
+    const [activeTab] = useState<'personal' | 'professional' | 'approach'>('personal');
+    const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+    const [, setCounterState] = useState<number>(0);
 
-    // ! TODO: Change to actual tech stack
-    const techStack = [
+    // ! TODO: Replace with your actual tech stack & order
+    type TechStackItem = { category: string; items: string[] };
+    const techStack: TechStackItem[] = [
         { category: "Frontend", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "Tailwind"] },
         { category: "Backend", items: ["Node.js", "Express", "Java", "Python"] },
         { category: "Cloud", items: ["AWS", "Docker", "Vercel", "MongoDB"] }
     ];
 
+    // ! TODO: Adjust features/highlights to match your services or strengths
     const features = ["Full-stack expertise", "Clean, maintainable code", "Performance optimization", "Agile methodology", "24/7 support", "Timely delivery"];
 
-    // ! TODO: Add actual social links
+    // ! TODO: Replace these hrefs with your real profiles (and update icons if needed)
     const socialLinks = [
         { icon: <FaGithub className="h-5 w-5" />, href: "https://www.github.com/sahilmd01" },
         { icon: <FaLinkedin className="h-5 w-5" />, href: "https://www.linkedin.com/in/codewithkinu" },
@@ -25,15 +28,15 @@ export const AboutSection = () => {
         { icon: <FaEnvelope className="h-5 w-5" />, href: "mailto:sahilmd.dev@gmail.com" }
     ];
     
-    // ! TODO: Add actual content for each tab
-    const tabContent = {
+    // ! TODO: Personalize these tab contents (bios / professional summary / approach)
+    const tabContent: Record<'personal' | 'professional' | 'approach', string> = {
         personal: "Passionate about creating digital solutions that make a difference. When I'm not coding, I'm exploring new technologies, contributing to open-source, and mentoring aspiring developers.",
         professional: "With 1+ years in full-stack development, I've delivered 15+ successful projects using modern technologies. I specialize in scalable architecture and performance optimization.",
         approach: "I believe in clean code, thorough testing, and user-centered design. My process emphasizes collaboration, agile methodologies, and continuous improvement."
     };
 
     useEffect(() => {
-        const handleMouseMove = (e) => setMousePosition({ x: e.clientX, y: e.clientY });
+        const handleMouseMove = (e: MouseEvent) => setMousePosition({ x: e.clientX, y: e.clientY });
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
@@ -44,17 +47,18 @@ export const AboutSection = () => {
     }, []);
 
     // Programmatic download function
+    // ! TODO: Ensure resume PDF is placed in the public folder and update filename/path if different
     const handleDownload = () => {
         const link = document.createElement('a');
-        link.href = '/Sahil-resume.pdf'; // ! Must be in public folder
-        link.download = 'Sahil-resume.pdf';
+        link.href = '/Sahil-resume.pdf'; // ! TODO: change to '/YourName-resume.pdf'
+        link.download = 'Sahil-resume.pdf'; // ! TODO: change filename as desired
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     };
 
     return (
-        <section id="about" className="relative py-16 md:py-28 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-background via-background to-primary/5 overflow-hidden">
+        <section id="about" className="relative py-16 md:py-28 px-4 sm:px-6 lg:px-12 bg-linear-to-br from-background via-background to-primary/5 overflow-hidden">
             {/* Background Shapes */}
             <div className="absolute inset-0 overflow-hidden">
                 <div
@@ -65,7 +69,7 @@ export const AboutSection = () => {
                     className="absolute w-60 sm:w-80 h-60 sm:h-80 bg-secondary/5 rounded-full blur-3xl transition-all duration-1500 ease-out"
                     style={{ transform: `translate(${mousePosition.x * -0.03}px, ${mousePosition.y * -0.03}px)` }}
                 />
-                <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:64px_64px]" />
+                <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[64px_64px]" />
                 <div className="absolute top-16 right-8 sm:top-20 sm:right-20 animate-float">
                     <div className="w-6 sm:w-8 h-6 sm:h-8 bg-primary/20 rounded-lg rotate-45" />
                 </div>
@@ -82,7 +86,7 @@ export const AboutSection = () => {
                             <Sparkles className="h-4 sm:h-5 w-4 sm:w-5 text-primary animate-pulse" />
 
                             {/* Tab Content */}
-                            <div className="min-h-[100px] sm:min-h-[120px]">
+                            <div className="min-h-25 sm:min-h-30">
                                 <AnimatePresence mode="sync">
                                     <motion.p
                                         key={activeTab}

@@ -5,8 +5,7 @@ import { AboutSection } from "../components/AboutSection";
 import { SkillsSection } from "../components/SkillsSection";
 // import { ProjectsSection } from "../components/ProjectsSection";
 // import { ContactSection } from "../components/ContactSection";
-// import { Footer } from "../components/Footer";
-// import { TestimonialSection } from "../components/Testimonial";
+import { Footer } from "../components/Footer";
 
 export const Home = () => {
   return (
@@ -19,16 +18,15 @@ export const Home = () => {
         <Navbar />
         {/* Main Content */}
             <main>
-            {/* <HeroSection /> */}
+            <HeroSection />
             <AboutSection />
             <SkillsSection />
             {/* <ProjectsSection /> */}
-            {/* <TestimonialSection /> */}
             {/* <ContactSection /> */}
         </main>
 
         {/* Footer */}
-        {/* <Footer /> */}
+        <Footer />
     </div>
     );
 };

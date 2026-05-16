@@ -67,10 +67,10 @@ const SkillBar = ({ level }: { level: number }) => (
             transition={{ duration: 1.5, delay: 0.2 }}
             className={`h-full rounded-full ${
                 level > 75
-                    ? "bg-gradient-to-r from-green-400 to-emerald-500"
+                    ? "bg-linear-to-r from-green-400 to-emerald-500"
                     : level > 50
-                    ? "bg-gradient-to-r from-yellow-400 to-amber-500"
-                    : "bg-gradient-to-r from-red-400 to-pink-500"
+                    ? "bg-linear-to-r from-yellow-400 to-amber-500"
+                    : "bg-linear-to-r from-red-400 to-pink-500"
             }`}
         />
     </div>
@@ -87,7 +87,7 @@ const InfiniteScrollSkills = ({ skills }: { skills: Skill[] }) => {
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
                 {duplicatedSkills.map((skill, index) => (
-                    <div key={`${skill.name}-${index}`} className="flex-shrink-0 flex flex-col items-center gap-2">
+                    <div key={`${skill.name}-${index}`} className="shrink-0 flex flex-col items-center gap-2">
                         <div className="w-16 h-16 rounded-full bg-card border-2 border-primary/50 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                             <img src={iconImages[skill.icon]} alt={skill.name} className="w-8 h-8 object-contain" />
                         </div>
@@ -102,7 +102,7 @@ const InfiniteScrollSkills = ({ skills }: { skills: Skill[] }) => {
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
                 {[...duplicatedSkills].reverse().map((skill, index) => (
-                    <div key={`${skill.name}-reverse-${index}`} className="flex-shrink-0 flex flex-col items-center gap-2">
+                    <div key={`${skill.name}-reverse-${index}`} className="shrink-0 flex flex-col items-center gap-2">
                         <div className="w-16 h-16 rounded-full bg-card border-2 border-primary/50 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                             <img src={iconImages[skill.icon]} alt={skill.name} className="w-8 h-8 object-contain" />
                         </div>
@@ -121,10 +121,10 @@ export const SkillsSection = () => {
     );
 
     return (
-        <section id="skills" className="py-28 px-4 bg-gradient-to-br from-background via-secondary/5 to-background">
+        <section id="skills" className="py-28 px-4 bg-linear-to-br from-background via-secondary/5 to-background">
             <div className="container mx-auto max-w-6xl">
                 <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-20">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-br from-primary to-primary/80">
                         My Skills
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto text-lg">

@@ -64,17 +64,17 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-background via-background/95 to-primary/10" ref={ref}>
+    <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-linear-to-br from-background via-background/95 to-primary/10" ref={ref}>
       
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black,transparent)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)] `bg-size-[80px_80px] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,black,transparent)]" />
         </div>
         
         {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-lg"
+            className="absolute bg-linear-to-r from-primary/10 to-purple-500/10 rounded-lg"
             style={{
               width: Math.random() * 60 + 20 + 'px',
               height: Math.random() * 60 + 20 + 'px',
@@ -96,8 +96,8 @@ export const HeroSection = () => {
           />
         ))}
         
-        <motion.div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-gradient-to-r from-primary/10 to-purple-600/10 blur-[100px]" animate={{ x: [0, 30, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }} transition={{ duration: 15, repeat: Infinity }} />
-        <motion.div className="absolute bottom-20 right-10 w-72 h-72 rounded-full bg-gradient-to-r from-cyan-400/10 to-emerald-500/10 blur-[100px]" animate={{ x: [0, -40, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }} transition={{ duration: 20, repeat: Infinity, delay: 2 }} />
+        <motion.div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-linear-to-r from-primary/10 to-purple-600/10 blur-[100px]" animate={{ x: [0, 30, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }} transition={{ duration: 15, repeat: Infinity }} />
+        <motion.div className="absolute bottom-20 right-10 w-72 h-72 rounded-full bg-linear-to-r from-cyan-400/10 to-emerald-500/10 blur-[100px]" animate={{ x: [0, -40, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }} transition={{ duration: 20, repeat: Infinity, delay: 2 }} />
       </div>
 
       <div className="container max-w-7xl mx-auto w-full mt-16 sm:mt-0">
@@ -110,7 +110,7 @@ export const HeroSection = () => {
 
             <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
               <span className="block text-foreground">I'm Sahil</span> {/* ! TODO: replace with your display name */}
-              <motion.span className="block bg-gradient-to-r from-primary via-purple-600 to-pink-600 bg-clip-text text-transparent mt-2" animate={{ backgroundPosition: ['0%', '100%', '0%'] }} transition={{ duration: 8, repeat: Infinity }} style={{ backgroundSize: '200% 100%' }}>
+              <motion.span className="block bg-linear-to-r from-primary via-purple-600 to-pink-600 bg-clip-text text-transparent mt-2" animate={{ backgroundPosition: ['0%', '100%', '0%'] }} transition={{ duration: 8, repeat: Infinity }} style={{ backgroundSize: '200% 100%' }}>
                 Full-Stack Engineer
               </motion.span>
             </motion.h1>
@@ -133,7 +133,7 @@ export const HeroSection = () => {
 
             <motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
               {/* ! TODO: Update anchor hrefs if your section IDs differ (#projects, #contact). */}
-              <motion.a href="#projects" className="group relative overflow-hidden px-8 py-4 rounded-xl font-semibold bg-gradient-to-r from-primary to-purple-600 text-primary-foreground shadow-lg hover:shadow-xl text-sm flex items-center justify-center gap-3" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+              <motion.a href="#projects" className="group relative overflow-hidden px-8 py-4 rounded-xl font-semibold bg-linear-to-r from-primary to-purple-600 text-primary-foreground shadow-lg hover:shadow-xl text-sm flex items-center justify-center gap-3" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
                 <Code className="h-5 w-5" /> 
                 <span>View Case Studies</span>
                 <TrendingUp className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -178,14 +178,14 @@ export const HeroSection = () => {
                   <div className="w-4 h-4 bg-green-400/20 rounded-full animate-pulse"></div>
                 </div>
 
-                <div className="font-mono text-sm bg-primary/5 rounded-lg border border-primary/10 min-h-[280px] flex">
+                <div className="font-mono text-sm bg-primary/5 rounded-lg border border-primary/10 min-h-70 flex">
                   <div className="p-6 w-full">
                     <div className="grid grid-cols-1 gap-1 h-full content-start">
                       {codeSnippets.map((line, index) => (
                         <div 
                           key={index}
                           className={`
-                            min-h-[20px] flex items-start
+                            min-h-5 flex items-start
                             ${index < currentCodeLine ? 'opacity-100' : 'opacity-0'}
                             ${index === currentCodeLine ? 'opacity-100' : ''}
                             transition-opacity duration-150 ease-in-out
@@ -219,7 +219,7 @@ export const HeroSection = () => {
                   </div>
                 </div>
 
-                <motion.div className="absolute -bottom-3 -right-3 w-14 h-14 bg-gradient-to-r from-primary to-purple-600 rounded-xl flex items-center justify-center border-2 border-background shadow-2xl" animate={{ y: [0, -5, 0], rotate: [0, -2, 0], scale: [1, 1.03, 1] }} transition={{ duration: 4, repeat: Infinity }}>
+                <motion.div className="absolute -bottom-3 -right-3 w-14 h-14 bg-linear-to-r from-primary to-purple-600 rounded-xl flex items-center justify-center border-2 border-background shadow-2xl" animate={{ y: [0, -5, 0], rotate: [0, -2, 0], scale: [1, 1.03, 1] }} transition={{ duration: 4, repeat: Infinity }}>
                   <Code className="h-5 w-5 text-white" />
                 </motion.div>
                 
