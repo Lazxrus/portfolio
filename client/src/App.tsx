@@ -18,7 +18,7 @@ function App() {
 			enableSystem
 			disableTransitionOnChange
 		>
-			{/* <Toaster /> */}
+			<Toaster />
 			{!welcomeComplete ? (
 				<WelcomeScreen onWelcomeComplete={() => setWelcomeComplete(true)} />
 			) : (

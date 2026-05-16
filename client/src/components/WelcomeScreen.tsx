@@ -1,16 +1,29 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { useTheme } from "next-themes";
 
-const WelcomeScreen = ({ onWelcomeComplete }) => {
-    const [phase, setPhase] = useState(0);
-    const [exitAnimation, setExitAnimation] = useState(false);
-    const [typedText, setTypedText] = useState("");
+interface WelcomeScreenProps {
+    onWelcomeComplete: () => void;
+}
+
+type ThemeKey = "light" | "dark";
+
+const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
+    const [phase, setPhase] = useState<number>(0);
+    const [exitAnimation, setExitAnimation] = useState<boolean>(false);
+    const [typedText, setTypedText] = useState<string>("");
     const { theme } = useTheme();
 
     // Theme-based colors
-    const colors = {
+    const colors: Record<ThemeKey, {
+        primary: string;
+        secondary: string;
+        background: string;
+        muted: string;
+        link: string;
+    }> = {
         light: {
             primary: "hsl(222.2 47.4% 11.2%)",
             secondary: "hsl(262.1 83.3% 57.8%)",
@@ -28,48 +41,50 @@ const WelcomeScreen = ({ onWelcomeComplete }) => {
     };
 
     // TODO: Add portfolioURL
-    const currentColors = colors[theme] || colors.dark;
-    const portfolioUrl = "add-link.con"
-    const welcomeMessages = [
+    const resolvedTheme: ThemeKey = theme === "dark" ? "dark" : "light";
+    const currentColors = colors[resolvedTheme];
+    const portfolioUrl: string = "add-link.con";
+    const welcomeMessages: string[] = [
         "Crafting digital experiences",
         "Backend Developer",
         "Python Specialist"
     ];
 
     useEffect(() => {
-        const phase1 = setTimeout(() => setPhase(1), 800);
-        const phase2 = setTimeout(() => setPhase(2), 1600);
-        const phase3 = setTimeout(() => setPhase(3), 2400);
-        const complete = setTimeout(() => {
+        const phase1 = window.setTimeout(() => setPhase(1), 800);
+        const phase2 = window.setTimeout(() => setPhase(2), 1600);
+        const phase3 = window.setTimeout(() => setPhase(3), 2400);
+        const complete = window.setTimeout(() => {
             setExitAnimation(true);
-            setTimeout(onWelcomeComplete, 1000);
+            window.setTimeout(onWelcomeComplete, 1000);
         }, 5000);
 
         return () => {
-            clearTimeout(phase1);
-            clearTimeout(phase2);
-            clearTimeout(phase3);
-            clearTimeout(complete);
+            window.clearTimeout(phase1);
+            window.clearTimeout(phase2);
+            window.clearTimeout(phase3);
+            window.clearTimeout(complete);
         };
     }, [onWelcomeComplete]);
 
     useEffect(() => {
         if (phase >= 2) {
             let i = 0;
-            const typingInterval = setInterval(() => {
+            const typingInterval = window.setInterval(() => {
                 if (i <= portfolioUrl.length) {
                     setTypedText(portfolioUrl.substring(0, i));
                     i++;
                 } else {
-                    clearInterval(typingInterval);
+                    window.clearInterval(typingInterval);
                 }
             }, 40);
 
-            return () => clearInterval(typingInterval);
+            return () => window.clearInterval(typingInterval);
         }
-    }, [phase]);
+        return;
+    }, [phase, portfolioUrl]);
 
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: {opacity: 0},
         visible: {
             opacity: 1,
@@ -88,7 +103,7 @@ const WelcomeScreen = ({ onWelcomeComplete }) => {
         }
     };
 
-    const contentVariants = {
+    const contentVariants: Variants = {
         hidden: { y:20, opacity: 0 },
         visible: {
             y: 0,
@@ -100,7 +115,7 @@ const WelcomeScreen = ({ onWelcomeComplete }) => {
         }
     };
 
-    const underlineVariants = {
+    const underlineVariants: Variants = {
     hidden: { scaleX: 0 },
     visible: {
         scaleX: 1,
@@ -112,7 +127,7 @@ const WelcomeScreen = ({ onWelcomeComplete }) => {
         }
     };
 
-    const cursorVariants = {
+    const cursorVariants: Variants = {
         blinking: {
             opacity: [0, 0, 1, 1],
             transition: {

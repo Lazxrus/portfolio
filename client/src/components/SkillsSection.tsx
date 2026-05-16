@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // !TODO: Import your images
 import htmlIcon from "@/assets/icons/html.png";
-import cssIcon from "@/assets/icons/css.png";
 import reactIcon from "@/assets/icons/react.png";
 import mongodbIcon from "@/assets/icons/mongodb.png";
 import postgresqlIcon from "@/assets/icons/postgresql.png";
@@ -24,7 +23,6 @@ type Skill = {
 const skills: Skill[] = [
     // Frontend
     { name: "HTML5", level: 95, category: "frontend", icon: "html" },
-    { name: "CSS3", level: 90, category: "frontend", icon: "css" },
     { name: "JavaScript", level: 90, category: "frontend", icon: "javascript" },
     { name: "React", level: 90, category: "frontend", icon: "react" },
 
@@ -50,7 +48,6 @@ const categories = [
 
 const iconImages: { [key: string]: string } = {
     html: htmlIcon,
-    css: cssIcon,
     react: reactIcon,
     mongodb: mongodbIcon,
     postgresql: postgresqlIcon,

@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FaBriefcase, FaCalendarAlt, FaBullseye, FaUser, FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaCode, FaStar } from 'react-icons/fa';
+import { FaUser, FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaCode, FaStar, FaDownload } from 'react-icons/fa';
 import { Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const AboutSection = () => {
     const [activeTab, setActiveTab] = useState('personal');
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [counter, setCounter] = useState(0);
-
-    // ! TODO: Section to showcase years of experience, projects, clients, etc. with icons and animations
-    const achievements = [
-        { number: "15+", label: "Projects", icon: <FaBriefcase className="h-5 w-5" />, suffix: "" },
-        { number: "1", label: "Years Exp", icon: <FaCalendarAlt className="h-5 w-5" />, suffix: "+" },
-        { number: "99", label: "Success", icon: <FaBullseye className="h-5 w-5" />, suffix: "%" },
-        { number: "10", label: "Clients", icon: <FaUser className="h-5 w-5" />, suffix: "+" }
-    ];
+    const [counter, setCounterState] = useState(0);
 
     // ! TODO: Change to actual tech stack
     const techStack = [
@@ -47,7 +39,7 @@ export const AboutSection = () => {
     }, []);
 
     useEffect(() => {
-        const interval = setInterval(() => setCounter(prev => (prev + 1) % 4), 2000);
+        const interval = setInterval(() => setCounterState(prev => (prev + 1) % 4), 2000);
         return () => clearInterval(interval);
     }, []);
 

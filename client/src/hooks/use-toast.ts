@@ -6,7 +6,7 @@ export type ToastItem = {
   title?: string;
   description?: string;
   action?: React.ReactNode;
-  duration?: number | null;
+  duration?: number;
   onOpenChange?: (open: boolean) => void;
   [key: string]: any;
 };
