@@ -109,9 +109,9 @@ export const HeroSection = () => {
             </motion.div>
 
             <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
-              <span className="block text-foreground">I'm Sahil</span> {/* ! TODO: replace with your display name */}
+              <span className="block text-foreground">I'm Ivo</span> {/* ! TODO: replace with your display name */}
               <motion.span className="block bg-linear-to-r from-primary via-purple-600 to-pink-600 bg-clip-text text-transparent mt-2" animate={{ backgroundPosition: ['0%', '100%', '0%'] }} transition={{ duration: 8, repeat: Infinity }} style={{ backgroundSize: '200% 100%' }}>
-                Full-Stack Engineer
+                Backend Engineer
               </motion.span>
             </motion.h1>
 

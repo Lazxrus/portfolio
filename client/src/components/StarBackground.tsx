@@ -39,7 +39,7 @@ export const StarBackground: React.FC = () => {
   const generateStars = () => {
     // ! TODO: tweak density formula to your liking (stars per area)
     const numberOfStars = Math.floor(
-      (window.innerWidth * window.innerHeight) / 20000
+      (window.innerWidth * window.innerHeight) / 15000
     );
 
     const newStars: Star[] = [];
