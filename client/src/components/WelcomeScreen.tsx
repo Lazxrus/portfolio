@@ -43,17 +43,19 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
     // TODO: Add portfolioURL
     const resolvedTheme: ThemeKey = theme === "dark" ? "dark" : "light";
     const currentColors = colors[resolvedTheme];
-    const portfolioUrl: string = "add-link.con";
+    const bottomText: string = "Coding up something awesome for you";
     const welcomeMessages: string[] = [
-        "Crafting digital experiences",
-        "Backend Developer",
-        "Python Specialist"
+        "Setting up the stage...",
+        "Coding in progress...",
+        "Dialing up the creativity...",
+        "Almost there..."
     ];
 
+    // Message and animation duration management
     useEffect(() => {
-        const phase1 = window.setTimeout(() => setPhase(1), 800);
-        const phase2 = window.setTimeout(() => setPhase(2), 1600);
-        const phase3 = window.setTimeout(() => setPhase(3), 2400);
+        const phase1 = window.setTimeout(() => setPhase(1), 1200);
+        const phase2 = window.setTimeout(() => setPhase(2), 2400);
+        const phase3 = window.setTimeout(() => setPhase(3), 3200);
         const complete = window.setTimeout(() => {
             setExitAnimation(true);
             window.setTimeout(onWelcomeComplete, 1000);
@@ -71,18 +73,18 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
         if (phase >= 2) {
             let i = 0;
             const typingInterval = window.setInterval(() => {
-                if (i <= portfolioUrl.length) {
-                    setTypedText(portfolioUrl.substring(0, i));
+                if (i <= bottomText.length) {
+                    setTypedText(bottomText.substring(0, i));
                     i++;
                 } else {
                     window.clearInterval(typingInterval);
                 }
-            }, 40);
+            }, 40); // Typing speed
 
             return () => window.clearInterval(typingInterval);
         }
         return;
-    }, [phase, portfolioUrl]);
+    }, [phase, bottomText]);
 
     const containerVariants: Variants = {
         hidden: {opacity: 0},
@@ -90,7 +92,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
             opacity: 1,
             transition: {
                 staggerChildren: 0.15,
-                delayChildren: 0.3
+                delayChildren: 0
             }
         },
         exit: {
@@ -104,12 +106,13 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
     };
 
     const contentVariants: Variants = {
-        hidden: { y:20, opacity: 0 },
+        hidden: { y:30, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
             transition: {
-                duration: 0.8,
+                delay: 0.2,
+                duration: 0.6,
                 ease: [0.16, 1, 0.3, 1]
             }
         }
@@ -205,32 +208,40 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
                         )}
 
                         {phase >= 1 && (
-                            <motion.h1 
+                            <motion.h1
                                 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-tight"
                                 style={{ color: currentColors.primary }}
                                 variants={contentVariants}
+                                initial="hidden"
+                                animate="visible"
                             >
                                 <span className="inline-block">Hello</span>
-                                <motion.span 
-                                className="inline-block ml-2 sm:ml-3 relative"
-                                style={{ color: currentColors.secondary }}
-                                variants={contentVariants}
+                                <motion.span
+                                    className="inline-block ml-2 sm:ml-3 relative"
+                                    style={{ color: currentColors.secondary }}
+                                    variants={contentVariants}
+                                    initial="hidden"
+                                    animate="visible"
                                 >
-                                There !
-                                <motion.span 
-                                    className="absolute -bottom-1 sm:-bottom-2 left-0 h-0.5 sm:h-1 w-full"
-                                    style={{ backgroundColor: currentColors.secondary }}
-                                    variants={underlineVariants}
-                                />
+                                    There !
+                                    <motion.span
+                                        className="absolute -bottom-1 sm:-bottom-2 left-0 h-0.5 sm:h-1 w-full"
+                                        style={{ backgroundColor: currentColors.secondary }}
+                                        variants={underlineVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                    />
                                 </motion.span>
                             </motion.h1>
-                            )}
+                        )}
 
                         {phase >= 2 && (
                         <motion.div 
                             className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed font-light"
                             style={{ color: currentColors.muted }}
                             variants={contentVariants}
+                            initial="hidden"
+                            animate="visible"
                         >
                             <motion.div 
                             className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg font-mono flex justify-center items-center"
@@ -246,15 +257,6 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
                                 />
                             )}
                         </motion.div>
-                        <motion.p 
-                        className="mt-2 sm:mt-4 text-xs sm:text-sm md:text-base"
-                        style={{ color: currentColors.muted }}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.5 }}
-                        >
-                        (This is my portfolio website)
-                        </motion.p>
                     </motion.div>
                     )}
 
@@ -262,6 +264,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
                         <motion.div 
                             className="pt-4 sm:pt-6 md:pt-8"
                             variants={contentVariants}
+                            initial="hidden"
+                            animate="visible"
                         >
                             <motion.div 
                                 className="h-1 sm:h-2 w-16 sm:w-20 rounded-full mx-auto"
@@ -275,15 +279,6 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
                                     repeat: Infinity
                                 }}
                             />
-                            <motion.p 
-                                className="mt-2 sm:mt-4 text-xs sm:text-sm opacity-70"
-                                style={{ color: currentColors.muted }}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.5 }}
-                            >
-                            Loading my best work for you...
-                            </motion.p>
                         </motion.div>
                         )}
                     </motion.div>

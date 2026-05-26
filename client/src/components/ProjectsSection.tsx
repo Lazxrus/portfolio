@@ -22,7 +22,6 @@ type Project = {
 };
 
 const projects: Project[] = [
-  // ...existing code...
   {
     id: 8,
     title: "GenAxis",
@@ -139,7 +138,6 @@ const projects: Project[] = [
     status: "Development",
     highlights: ["Job matching", "Candidate tracking", "Application system"]
   }
-  // ...existing code...
 ];
 
 // ! TODO: Update categoryColors to match your app theme or category list if you add/remove categories.
@@ -281,7 +279,7 @@ export const ProjectsSection: FC = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             {displayedProjects.map((project, index) => (
               <motion.div
                 key={project.id}

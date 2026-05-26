@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Briefcase, Code, User, Download, Calendar, Sparkles, Target, Github, Linkedin, Twitter, Mail, Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Briefcase, Code, User, Download, Calendar, Sparkles, Target, Mail, Star } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const AboutSection = () => {
@@ -23,9 +24,9 @@ export const AboutSection = () => {
   const features = ["Full-stack expertise", "Clean, maintainable code", "Performance optimization", "Agile methodology", "24/7 support", "Timely delivery"];
 
   const socialLinks = [
-    { icon: <Github className="h-5 w-5" />, href: "https://www.github.com/sahilmd01" },
-    { icon: <Linkedin className="h-5 w-5" />, href: "https://www.linkedin.com/in/codewithkinu" },
-    { icon: <Twitter className="h-5 w-5" />, href: "#" },
+    { icon: <FaGithub className="h-5 w-5" />, href: "https://www.github.com/sahilmd01" },
+    { icon: <FaLinkedin className="h-5 w-5" />, href: "https://www.linkedin.com/in/codewithkinu" },
+    { icon: <FaTwitter className="h-5 w-5" />, href: "#" },
     { icon: <Mail className="h-5 w-5" />, href: "mailto:sahilmd.dev@gmail.com" }
   ];
 
@@ -57,12 +58,12 @@ export const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="relative py-16 md:py-28 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-background via-background to-primary/5 overflow-hidden">
+    <section id="about" className="relative py-16 md:py-28 px-4 sm:px-6 lg:px-12 bg-linear-to-br from-background via-background to-primary/5 overflow-hidden">
       {/* Background Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute w-72 sm:w-96 h-72 sm:h-96 bg-primary/5 rounded-full blur-3xl transition-all duration-1000 ease-out" style={{ transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)` }} />
         <div className="absolute w-60 sm:w-80 h-60 sm:h-80 bg-secondary/5 rounded-full blur-3xl transition-all duration-1500 ease-out" style={{ transform: `translate(${mousePosition.x * -0.03}px, ${mousePosition.y * -0.03}px)` }} />
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[64px_64px]" />
         <div className="absolute top-16 right-8 sm:top-20 sm:right-20 animate-float"><div className="w-6 sm:w-8 h-6 sm:h-8 bg-primary/20 rounded-lg rotate-45" /></div>
         <div className="absolute bottom-32 left-8 sm:bottom-40 sm:left-20 animate-float animation-delay-2000"><div className="w-5 sm:w-6 h-5 sm:h-6 bg-secondary/20 rounded-full" /></div>
       </div>
@@ -78,7 +79,7 @@ export const AboutSection = () => {
             <span className="text-sm sm:text-base font-semibold text-primary tracking-wide">ABOUT ME</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
-            <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">Transforming</span>
+            <span className="bg-linear-to-r from-foreground to-primary bg-clip-text text-transparent">Transforming</span>
             <span className="block text-primary animate-pulse">Ideas Into Reality</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -100,7 +101,7 @@ export const AboutSection = () => {
               <div className="relative">
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
                   {/* Profile Image */}
-                  <div className="relative flex-shrink-0">
+                  <div className="relative shrink-0">
                     <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-4 border-primary/20 shadow-2xl transition-all duration-500 group-hover:border-primary/40 group-hover:scale-105 md:group-hover:scale-110 relative">
                       <img src="/profile-logo.png" alt="MD Sahil" className="w-full h-full object-cover" />
                       <div className="absolute -bottom-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-full border-4 border-background flex items-center justify-center">
@@ -143,7 +144,7 @@ export const AboutSection = () => {
                 </div>
 
                 {/* Tab Content */}
-                <div className="min-h-[100px] sm:min-h-[120px]">
+                <div className="min-h-25 sm:min-h-30">
                   <AnimatePresence mode="sync">
                     <motion.p
                       key={activeTab}
