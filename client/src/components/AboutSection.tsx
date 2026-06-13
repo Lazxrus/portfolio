@@ -1,89 +1,116 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Briefcase, Code, User, Download, Calendar, Sparkles, Target, Mail, Star } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const AboutSection = () => {
-  const [activeTab, setActiveTab] = useState('personal');
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [counter, setCounter] = useState(0);
+type TabType = 'personal' | 'professional' | 'approach';
 
-  const achievements = [
-    { number: "15+", label: "Projects", icon: <Briefcase className="h-5 w-5" />, suffix: "" },
+interface Achievement {
+  number: string;
+  label: string;
+  icon: React.ReactNode;
+  suffix: string;
+}
+
+interface TechStack {
+  category: string;
+  items: string[];
+}
+
+interface SocialLink {
+  icon: React.ReactNode;
+  href: string;
+}
+
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+interface TabContent {
+  personal: string;
+  professional: string;
+  approach: string;
+}
+
+export const AboutSection = (): React.ReactElement => {
+  const [activeTab, setActiveTab] = useState<TabType>('personal');
+  const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
+  const [counter, setCounter] = useState<number>(0);
+
+  const handleMouseMove = useCallback((e: MouseEvent): void => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  }, []);
+
+  // ! TODO: Change achievements to real data
+  const achievements: Achievement[] = [
+    { number: "8+", label: "Portfolio Projects", icon: <Briefcase className="h-5 w-5" />, suffix: "" },
     { number: "1", label: "Years Exp", icon: <Calendar className="h-5 w-5" />, suffix: "+" },
     { number: "99", label: "Success", icon: <Target className="h-5 w-5" />, suffix: "%" },
-    { number: "10", label: "Clients", icon: <User className="h-5 w-5" />, suffix: "+" }
+    { number: "NULL", label: "CHANGE", icon: <User className="h-5 w-5" />, suffix: "+" }
   ];
 
-  const techStack = [
+  const techStack: TechStack[] = [
     { category: "Frontend", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "Tailwind"] },
     { category: "Backend", items: ["Node.js", "Express", "Java", "Python"] },
     { category: "Cloud", items: ["AWS", "Docker", "Vercel", "MongoDB"] }
   ];
 
-  const features = ["Full-stack expertise", "Clean, maintainable code", "Performance optimization", "Agile methodology", "24/7 support", "Timely delivery"];
+  const features: string[] = ["Full-stack expertise", "Clean, maintainable code", "Performance optimization", "Agile methodology", "24/7 support", "Timely delivery"];
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     { icon: <FaGithub className="h-5 w-5" />, href: "https://www.github.com/sahilmd01" },
     { icon: <FaLinkedin className="h-5 w-5" />, href: "https://www.linkedin.com/in/codewithkinu" },
     { icon: <FaTwitter className="h-5 w-5" />, href: "#" },
     { icon: <Mail className="h-5 w-5" />, href: "mailto:sahilmd.dev@gmail.com" }
   ];
 
-  const tabContent = {
+  const tabContent: TabContent = {
     personal: "Passionate about creating digital solutions that make a difference. When I'm not coding, I'm exploring new technologies, contributing to open-source, and mentoring aspiring developers.",
     professional: "With 1+ years in full-stack development, I've delivered 15+ successful projects using modern technologies. I specialize in scalable architecture and performance optimization.",
     approach: "I believe in clean code, thorough testing, and user-centered design. My process emphasizes collaboration, agile methodologies, and continuous improvement."
   };
 
   useEffect(() => {
-    const handleMouseMove = (e) => setMousePosition({ x: e.clientX, y: e.clientY });
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [handleMouseMove]);
 
   useEffect(() => {
-    const interval = setInterval(() => setCounter(prev => (prev + 1) % 4), 2000);
+    const interval = setInterval(() => setCounter((prev: number) => (prev + 1) % 4), 2000);
     return () => clearInterval(interval);
   }, []);
 
-  // Programmatic download function
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/Sahil-resume.pdf'; // Must be in public folder
+  const handleDownload = (): void => {
+    const link: HTMLAnchorElement = document.createElement('a');
+    link.href = '/Sahil-resume.pdf';
     link.download = 'Sahil-resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
+  const handleTabClick = (tab: TabType): void => {
+    setActiveTab(tab);
+  };
+
   return (
     <section id="about" className="relative py-16 md:py-28 px-4 sm:px-6 lg:px-12 bg-linear-to-br from-background via-background to-primary/5 overflow-hidden">
-      {/* Background Shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-72 sm:w-96 h-72 sm:h-96 bg-primary/5 rounded-full blur-3xl transition-all duration-1000 ease-out" style={{ transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)` }} />
-        <div className="absolute w-60 sm:w-80 h-60 sm:h-80 bg-secondary/5 rounded-full blur-3xl transition-all duration-1500 ease-out" style={{ transform: `translate(${mousePosition.x * -0.03}px, ${mousePosition.y * -0.03}px)` }} />
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[64px_64px]" />
-        <div className="absolute top-16 right-8 sm:top-20 sm:right-20 animate-float"><div className="w-6 sm:w-8 h-6 sm:h-8 bg-primary/20 rounded-lg rotate-45" /></div>
-        <div className="absolute bottom-32 left-8 sm:bottom-40 sm:left-20 animate-float animation-delay-2000"><div className="w-5 sm:w-6 h-5 sm:h-6 bg-secondary/20 rounded-full" /></div>
-      </div>
-
       <div className="container mx-auto max-w-7xl relative">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20 px-2 sm:px-6">
           <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl bg-primary/10 border border-primary/20 mb-6 transition-all duration-500 hover:bg-primary/15 hover:scale-105 group cursor-pointer">
             <div className="relative">
               <Sparkles className="h-4 sm:h-5 w-4 sm:w-5 text-primary animate-pulse" />
-              <div className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full animate-ping" />
             </div>
             <span className="text-sm sm:text-base font-semibold text-primary tracking-wide">ABOUT ME</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
             <span className="bg-linear-to-r from-foreground to-primary bg-clip-text text-transparent">Transforming</span>
-            <span className="block text-primary animate-pulse">Ideas Into Reality</span>
+            <span className="block text-primary animate-pulse">Data Into Insight</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Building digital experiences that combine <span className="text-primary font-semibold">innovation</span>, <span className="text-primary font-semibold">performance</span>, and <span className="text-primary font-semibold">elegance</span>
+            Building scalable data pipelines that combine <span className="text-primary font-semibold">reliability</span>, <span className="text-primary font-semibold">efficiency</span>, and <span className="text-primary font-semibold">insights</span>
           </p>
         </div>
 
@@ -115,7 +142,7 @@ export const AboutSection = () => {
                     <h2 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">Ivo Vallejos</h2>
                     <p className="text-primary text-base sm:text-lg font-semibold mb-3 sm:mb-4">Python Developer</p>
                     <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                      {achievements.map((achievement, index) => (
+                      {achievements.map((achievement: Achievement, index: number) => (
                         <div key={index} className={`p-2 sm:p-3 rounded-xl bg-background/50 border border-border transition-all duration-300 hover:scale-105 hover:border-primary/30 ${counter === index ? 'bg-primary/10 border-primary/50' : ''}`}>
                           <div className="flex items-center gap-2 justify-center md:justify-start">
                             {achievement.icon}
@@ -132,10 +159,10 @@ export const AboutSection = () => {
 
                 {/* Tabs */}
                 <div className="flex flex-col sm:flex-row border-b border-border mb-4 sm:mb-6">
-                  {['personal', 'professional', 'approach'].map(tab => (
+                  {(['personal', 'professional', 'approach'] as const).map((tab: TabType) => (
                     <button
                       key={tab}
-                      onClick={() => setActiveTab(tab)}
+                      onClick={() => handleTabClick(tab)}
                       className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 text-sm sm:text-base font-medium transition-all duration-300 ${activeTab === tab ? 'text-primary border-b-2 border-primary' : 'text-muted-foreground hover:text-foreground'}`}
                     >
                       {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -167,14 +194,14 @@ export const AboutSection = () => {
                 <Code className="h-4 sm:h-6 w-4 sm:w-6 text-primary" />Tech Stack Overview
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-                {techStack.map((stack, index) => (
+                {techStack.map((stack: TechStack, index: number) => (
                   <div key={index} className="bg-background/50 border border-border rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:border-primary/30 hover:scale-105 group">
                     <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                       <div className="p-1 sm:p-2 bg-primary/10 rounded-lg text-primary group-hover:scale-110 transition-transform duration-300"><Code className="h-3 sm:h-4 w-3 sm:w-4" /></div>
                       <h4 className="font-semibold text-sm sm:text-lg">{stack.category}</h4>
                     </div>
                     <div className="space-y-1 sm:space-y-2">
-                      {stack.items.map((item, itemIndex) => (
+                      {stack.items.map((item: string, itemIndex: number) => (
                         <div key={itemIndex} className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                           <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />{item}
                         </div>
@@ -212,7 +239,7 @@ export const AboutSection = () => {
               <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-background/50 rounded-xl border border-border">
                 <h4 className="font-semibold mb-2 text-center text-sm sm:text-base">Quick Connect</h4>
                 <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-                  {socialLinks.map((social, index) => (
+                  {socialLinks.map((social: SocialLink, index: number) => (
                     <a key={index} href={social.href} className="p-2 bg-background rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">{social.icon}</a>
                   ))}
                 </div>
@@ -223,7 +250,7 @@ export const AboutSection = () => {
             <div className="bg-card/50 border border-border rounded-3xl p-4 sm:p-6 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:shadow-3xl hover:border-primary/40 hover:bg-card/60">
               <h3 className="text-base sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2"><Star className="h-4 sm:h-5 w-4 sm:w-5 text-primary" />Why Choose Me</h3>
               <div className="space-y-2 sm:space-y-3">
-                {features.map((feature, index) => (
+                {features.map((feature: string, index: number) => (
                   <div key={index} className="flex items-center gap-2 sm:gap-3 p-1 sm:p-2 rounded-lg transition-all duration-300 hover:bg-background/50 hover:scale-105">
                     <div className="w-2 h-2 bg-primary rounded-full animate-pulse" /><span className="text-xs sm:text-sm text-muted-foreground hover:text-foreground">{feature}</span>
                   </div>

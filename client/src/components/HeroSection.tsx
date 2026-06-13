@@ -1,4 +1,4 @@
-import { MousePointerClick, Code, Award, Download, Shield, Zap, TrendingUp, Briefcase, Mail } from "lucide-react";
+import { MousePointerClick, Code, Award, Download, Shield, Zap, TrendingUp, Briefcase } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
@@ -8,30 +8,28 @@ export const HeroSection = () => {
   const [currentCodeLine, setCurrentCodeLine] = useState(0);
   const [displayedCode, setDisplayedCode] = useState("");
 
-  // ! TODO: Update the code snippet contents to reflect your real name, stack, and messaging.
+  // ! TODO: Update the stack and line the stack with indentation
   const codeSnippets = [
-    "import { FullStackDeveloper } from 'yourname.dev';",
+    "from data_engineer import DataEngineer",
     "",
-    "const developer = new FullStackDeveloper({",
-    "  name: 'Sahil', // ! TODO: replace with your name",
-    "  stack: ['React', 'Next.js', 'Node.js', 'TypeScript'], // ! TODO: update stack",
-    "  focus: 'Building scalable web applications', // ! TODO: update focus",
-    "  status: 'Open to new opportunities' // ! TODO: update status",
-    "});",
+    "# Creating a data engineer profile...",
+    "dev = DataEngineer(",
+    "   name='Ivo',",
+    "   stack=['Python', 'Pandas', 'SQL', 'Docker'],",
+    "   focus='Building ETL pipelines',",
+    "   status='Open to new opportunities'",
+    ")",
     "",
-    "await developer.launchPortfolio(); // ! TODO: optional action",
-    "// Featured: E-commerce, SaaS, Enterprise, Startup MVPs // ! TODO: update highlights",
-    "",
-    "developer.connect();",
-    "console.log('🚀 Let\\'s build something exceptional together!') // ! TODO: update CTA"
+    "# Simulating data engineering tasks...",
+    "dev.build_pipeline('user_events')",
+    "dev.connect()",
+    "print(\"🚀 Let's build data products together!\")"
   ];
 
-  // ! TODO: Section to showcase years of experience, projects, clients, etc. with icons and animations
   const achievements = [
-    { number: "1+", label: "Years in Production", icon: <Shield className="h-3 w-3" /> },
-    { number: "15+", label: "Projects Delivered", icon: <TrendingUp className="h-3 w-3" /> },
-    { number: "100%", label: "Client Satisfaction", icon: <Award className="h-3 w-3" /> },
-    { number: "15+", label: "Projects completed", icon: <Zap className="h-3 w-3" /> }
+    { number: "1+", label: "Years of Experience", icon: <Shield className="h-3 w-3" /> },
+    { number: "8+", label: "Portfolio Projects", icon: <Zap className="h-3 w-3" /> },
+    { number: "Always", label: "Learning & Improving", icon: <Award className="h-3 w-3" /> }
   ];
 
   useEffect(() => {
@@ -58,9 +56,9 @@ export const HeroSection = () => {
     }
   }, [displayedCode, currentCodeLine]);
 
+  // ! TODO: Upload resume to host
   const handleViewResume = () => {
-    // ! TODO: Replace '/Sahil-resume.pdf' with your resume file path or external URL.
-    window.open('/Sahil-resume.pdf', '_blank', 'noopener,noreferrer');
+    window.open('/ivo-resume.pdf', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -105,7 +103,7 @@ export const HeroSection = () => {
           
           <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
             <motion.div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8 backdrop-blur-sm" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
-              <Briefcase className="h-4 w-4" /> Currently Accepting new Opportunities
+              <Briefcase className="h-4 w-4" /> Welcome to my portfolio
             </motion.div>
 
             <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
@@ -132,33 +130,22 @@ export const HeroSection = () => {
             </motion.div>
 
             <motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
-              {/* ! TODO: Update anchor hrefs if your section IDs differ (#projects, #contact). */}
+              {/* ! TODO: Update anchor href if your section IDs differ (#projects). */}
               <motion.a href="#projects" className="group relative overflow-hidden px-8 py-4 rounded-xl font-semibold bg-linear-to-r from-primary to-purple-600 text-primary-foreground shadow-lg hover:shadow-xl text-sm flex items-center justify-center gap-3" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
                 <Code className="h-5 w-5" /> 
-                <span>View Case Studies</span>
+                <span>View Projects</span>
                 <TrendingUp className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </motion.a>
-              
-              <motion.a href="#contact" className="group relative overflow-hidden px-8 py-4 rounded-xl font-semibold border border-primary/50 text-foreground hover:border-primary transition-all duration-300 bg-background/80 backdrop-blur-sm text-sm flex items-center justify-center gap-3" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
-                <Mail className="h-4 w-4" /> 
-                <span>Technical Interview</span>
               </motion.a>
               
               <motion.button 
                 onClick={handleViewResume}
-                className="group relative overflow-hidden px-6 py-4 rounded-xl font-semibold border border-border text-muted-foreground hover:border-primary/30 transition-all duration-300 bg-background/60 backdrop-blur-sm text-sm flex items-center justify-center gap-2" 
+                className="group relative overflow-hidden px-10.5 py-4 rounded-xl font-semibold border border-border text-muted-foreground hover:border-primary/30 bg-background/60 backdrop-blur-sm text-sm flex items-center justify-center gap-3"
                 whileHover={{ scale: 1.05, y: -2 }} 
                 whileTap={{ scale: 0.95 }}
               >
                 <Download className="h-4 w-4" /> 
                 <span>View Resume</span>
               </motion.button>
-            </motion.div>
-
-            <motion.div className="mt-6 text-center lg:text-left" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
-              <div className="text-sm text-muted-foreground">
-                🚀 <span className="text-primary font-semibold">Available Immediately</span> for Full-Stack and Frontend roles
-              </div>
             </motion.div>
           </div>
 
@@ -185,17 +172,17 @@ export const HeroSection = () => {
                         <div 
                           key={index}
                           className={`
-                            min-h-5 flex items-start
+                            min-h-5 flex items-start whitespace-pre-wrap
                             ${index < currentCodeLine ? 'opacity-100' : 'opacity-0'}
                             ${index === currentCodeLine ? 'opacity-100' : ''}
                             transition-opacity duration-150 ease-in-out
-                            ${line.includes("import") ? "text-purple-400 font-semibold" : 
-                              line.includes("const") || line.includes("new") ? "text-blue-400 font-semibold" :
-                              line.includes("React") || line.includes("Node.js") || line.includes("TypeScript") ? "text-cyan-400" :
-                              line.includes("FullStackDeveloper") ? "text-emerald-400 font-semibold" :
-                              line.includes("//") ? "text-muted-foreground italic" :
+                            ${line.includes("import") || line.includes("from") ? "text-purple-400 font-semibold" :
+                              line.includes("dev") || line.includes(")") || line.includes("status") ? "text-blue-400 font-semibold" :
+                              line.includes("stack") ? "text-cyan-400" :
+                              line.includes("print(") || line.includes("print ") ? "text-emerald-400 font-semibold" :
+                              line.trim().startsWith("#") ? "text-muted-foreground italic" :
                               line.includes("await") || line.includes("connect") ? "text-yellow-400" :
-                              line.includes("'") ? "text-amber-400" : 
+                              line.includes("'") || line.includes('"') ? "text-amber-400" :
                               "text-foreground"}
                           `}
                         >
