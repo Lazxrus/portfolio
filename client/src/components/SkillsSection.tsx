@@ -1,62 +1,48 @@
 import { useState } from "react";
+import { Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
 
 // !TODO: Import your images
-import htmlIcon from "@/assets/icons/html.png";
-import reactIcon from "@/assets/icons/react.png";
-import mongodbIcon from "@/assets/icons/mongodb.png";
-import postgresqlIcon from "@/assets/icons/postgresql.png";
-import pythonIcon from "@/assets/icons/python.png";
-import gitIcon from "@/assets/icons/git.png";
-import githubIcon from "@/assets/icons/github.png";
 import dockerIcon from "@/assets/icons/docker.png";
-import vscodeIcon from "@/assets/icons/vscode.png";
-import MySQLIcon from "@/assets/icons/mysql.png";
+import gitIcon from "@/assets/icons/git.png";
 
 type Skill = {
 	name: string;
 	level: number; // 0 to 100
-	category: "frontend" | "backend" | "tools";
+	category: "backend" | "data" | "tools";
 	icon: string; // key for iconImages
 };
 
 const skills: Skill[] = [
-    // Frontend
-    { name: "HTML5", level: 95, category: "frontend", icon: "html" },
-    { name: "JavaScript", level: 90, category: "frontend", icon: "javascript" },
-    { name: "React", level: 90, category: "frontend", icon: "react" },
-
     // Backend
-    { name: "MongoDB", level: 90, category: "backend", icon: "mongodb" },
-    { name: "PostgreSQL", level: 65, category: "backend", icon: "postgresql" },
-    { name: "Python", level: 60, category: "backend", icon: "python" },
+    { name: "Python", level: 80, category: "backend", icon: "python" },
+    { name: "Pandas", level: 70, category: "backend", icon: "pandas" },
+    { name: "NumPy", level: 70, category: "backend", icon: "numpy" },
+    { name: "Flask", level: 65, category: "backend", icon: "flask" },
+
+    // Data ML
+    { name: "PostgreSQL", level: 60, category: "data", icon: "postgresql" },
+    { name: "MongoDB", level: 75, category: "data", icon: "mongodb" },
+    { name: "SQL", level: 70, category: "data", icon: "sql" },
+    { name: "Plotly", level: 70, category: "data", icon: "plotly" },
 
     // Tools
-    { name: "Git", level: 90, category: "tools", icon: "git" },
-    { name: "GitHub", level: 90, category: "tools", icon: "github" },
-    { name: "Docker", level: 70, category: "tools", icon: "docker" },
-    { name: "VS Code", level: 95, category: "tools", icon: "vscode" },
-    { name: "MySQL", level: 90, category: "tools", icon: "mysql" },
+    { name: "Docker", level: 60, category: "tools", icon: "docker" },
+    { name: "Git", level: 80, category: "tools", icon: "git" },
+    { name: "GitHub", level: 85, category: "tools", icon: "github" },
+    { name: "VS Code", level: 85, category: "tools", icon: "vscode" },
+    { name: "Linux", level: 75, category: "tools", icon: "linux" },
 ];
 
 const categories = [
     { id: "all", label: "All Skills", color: "bg-gradient-to-r from-purple-500 to-pink-500" },
-    { id: "frontend", label: "Frontend", color: "bg-gradient-to-r from-blue-500 to-cyan-500" },
-    { id: "backend", label: "Backend", color: "bg-gradient-to-r from-green-500 to-emerald-500" },
+    { id: "backend", label: "Backend", color: "bg-gradient-to-r from-blue-500 to-cyan-500" },
+    { id: "data", label: "Data", color: "bg-gradient-to-r from-green-500 to-emerald-500" },
     { id: "tools", label: "Tools", color: "bg-gradient-to-r from-orange-500 to-yellow-500" },
 ];
 
 const iconImages: { [key: string]: string } = {
-    html: htmlIcon,
-    react: reactIcon,
-    mongodb: mongodbIcon,
-    postgresql: postgresqlIcon,
-    python: pythonIcon,
-    git: gitIcon,
-    github: githubIcon,
     docker: dockerIcon,
-    vscode: vscodeIcon,
-    mysql: MySQLIcon,
 };
 
 const SkillBar = ({ level }: { level: number }) => (
@@ -123,12 +109,25 @@ export const SkillsSection = () => {
     return (
         <section id="skills" className="py-28 px-4 bg-linear-to-br from-background via-secondary/5 to-background">
             <div className="container mx-auto max-w-6xl">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-20">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-br from-primary to-primary/80">
-                        My Skills
+                {/* Header */}
+                <motion.div 
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    viewport={{ once: true }}
+                >
+                    <Sparkles className="h-4 w-4" />
+                    My Skills
+                </motion.div>
+
+                {/* Hero */}
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-15">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-1 bg-clip-text text-transparent bg-linear-to-br from-primary to-primary/80 leading-tight">
+                        My Tech Stack
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                        Technologies I've mastered and my proficiency levels
+                        Technologies I'm learning and using, with proficiency levels. Always eager to expand my skill set and take on new challenges!
                     </p>
                 </motion.div>
 

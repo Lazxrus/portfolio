@@ -14,7 +14,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
     const [phase, setPhase] = useState<number>(0);
     const [exitAnimation, setExitAnimation] = useState<boolean>(false);
     const [typedText, setTypedText] = useState<string>("");
-    const { theme } = useTheme();
+    const { theme, resolvedTheme } = useTheme();
 
     // Theme-based colors
     const colors: Record<ThemeKey, {
@@ -41,8 +41,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
     };
 
     // TODO: Add portfolioURL
-    const resolvedTheme: ThemeKey = theme === "dark" ? "dark" : "light";
-    const currentColors = colors[resolvedTheme];
+    const currentTheme: ThemeKey = resolvedTheme === "dark" ? "dark" : "light";
+    const currentColors = colors[currentTheme];
     const bottomText: string = "Coding up something awesome for you";
     const welcomeMessages: string[] = [
         "Setting up the stage...",
@@ -195,8 +195,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
                                     className="text-sm md:text-lg lg:text-xl font-mono mb-2 md:mb-4 inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-2 rounded-full border"
                                     style={{
                                         color: currentColors.primary,
-                                        backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                                        borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                                        backgroundColor: resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                                        borderColor: resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
                                     }}
                                     initial={{ scale: 0.9, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}

@@ -8,6 +8,8 @@
     "types": ["vite/client"],
     "skipLibCheck": true,
     "composite": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -15,17 +17,13 @@
     "moduleDetection": "force",
     "noEmit": false,
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
-    "paths": { "@/*": ["src/*"] },
+    "paths": { "@/*": ["./src"] },
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"]
 }

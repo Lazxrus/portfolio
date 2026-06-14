@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { Home } from "./pages/Home";
-import { NotFound } from "./pages/NotFound";
+import { NotFound } from "./pages/Notfound";
 import { Toaster } from "./components/ui/toaster";
 import WelcomeScreen from "./components/WelcomeScreen";
 import { Analytics } from "@vercel/analytics/react";
