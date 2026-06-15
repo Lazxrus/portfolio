@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface Star {
   id: number;
@@ -21,25 +21,37 @@ interface Meteor {
 export const StarBackground: React.FC = () => {
   const [stars, setStars] = useState<Star[]>([]);
   const [meteors, setMeteors] = useState<Meteor[]>([]);
+  const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     generateStars();
     generateMeteors();
 
     const handleResize = () => {
-      // ! TODO: consider debouncing this for performance on rapid resize
-      generateStars();
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+
+      resizeTimeoutRef.current = setTimeout(() => {
+        generateStars();
+      }, 300); // Debounce delay in milliseconds
     };
 
     window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+    };
   }, []);
 
   const generateStars = () => {
-    // ! TODO: tweak density formula to your liking (stars per area)
+    // Adjust density based on screen size (more stars for larger screens)
+    const densityDivisor = window.innerWidth < 768 ? 12000 : 15000;
     const numberOfStars = Math.floor(
-      (window.innerWidth * window.innerHeight) / 15000
+      (window.innerWidth * window.innerHeight) / densityDivisor
     );
 
     const newStars: Star[] = [];
@@ -59,7 +71,7 @@ export const StarBackground: React.FC = () => {
   };
 
   const generateMeteors = () => {
-    // ! TODO: change numberOfMeteors or timing if you want more/less meteors
+    // change numberOfMeteors or timing if you want more/less meteors
     const numberOfMeteors = 4;
     const newMeteors: Meteor[] = [];
 
@@ -103,7 +115,6 @@ export const StarBackground: React.FC = () => {
             height: meteor.size * 2 + "px",
             left: meteor.x + "%",
             top: meteor.y + "%",
-            // ! TODO: animationDelay must be a string with units
             animationDelay: meteor.delay + "s",
             animationDuration: meteor.animationDuration + "s",
           }}

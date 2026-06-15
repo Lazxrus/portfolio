@@ -40,7 +40,6 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
         }
     };
 
-    // TODO: Add portfolioURL
     const currentTheme: ThemeKey = resolvedTheme === "dark" ? "dark" : "light";
     const currentColors = colors[currentTheme];
     const bottomText: string = "Coding up something awesome for you";

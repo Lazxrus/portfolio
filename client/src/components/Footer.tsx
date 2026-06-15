@@ -1,7 +1,7 @@
 import React from "react";
-import { ArrowUp, Mail, Phone } from "lucide-react";
-import { FaGithub, FaLinkedin, FaYoutube, FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { ArrowUp, Mail, Phone } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 type SocialLink = { icon: React.ReactNode; href: string; label: string };
 type QuickLink = { name: string; href: string };
@@ -9,29 +9,22 @@ type ContactInfo = { icon: React.ReactNode; text: string; href?: string };
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  // ! TODO: Replace ownerName with your name/brand
-  const ownerName = "SAHIL";
+  const ownerName = "IVO";
 
   const socialLinks: SocialLink[] = [
-    // ! TODO: Update these URLs to your profiles
-    { icon: <FaLinkedin size={18} />, href: "https://linkedin.com/in/codewithkinu", label: "LinkedIn" },
-    { icon: <FaInstagram size={18} />, href: "https://instagram.com/dubbinut", label: "Instagram" },
-    { icon: <FaYoutube size={18} />, href: "https://youtube.com/@codewithkinu", label: "YouTube" },
-    { icon: <FaGithub size={18} />, href: "https://github.com/sahilmd01", label: "GitHub" },
+    { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/ivovallejos/", label: "LinkedIn" },
+    { icon: <FaGithub size={18} />, href: "https://github.com/Lazxrus", label: "GitHub" },
   ];
 
   const quickLinks: QuickLink[] = [
-    // ! TODO: Ensure these section IDs exist in your pages (e.g. #hero, #about)
     { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
-    { name: "Work", href: "#work" },
-    { name: "Contact", href: "#contact" },
+    { name: "Projects", href: "#projects" },
   ];
 
   const contactInfo: ContactInfo[] = [
-    // ! TODO: Replace email and phone with your contact details
-    { icon: <Mail size={16} />, text: "codewithkinu@gmail.com", href: "mailto:codewithkinu@gmail.com" },
-    { icon: <Phone size={16} />, text: "+91 9315145594", href: "tel:+919315145594" },
+    { icon: <Mail size={16} />, text: "ivo.alejandro.vallejos@gmail.com", href: "mailto:ivo.alejandro.vallejos@gmail.com" },
+    { icon: <FaGithub size={16} />, text: "Github", href: "https://github.com/Lazxrus" },
   ];
 
   const containerVariants = {
@@ -56,13 +49,6 @@ export const Footer: React.FC = () => {
     },
   };
 
-  // Simple local handler — ! TODO: Integrate with your newsletter service (Mailchimp/ConvertKit/Forms)
-  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // ! TODO: Implement subscribe logic (POST to API or redirect)
-    // Example: show a toast / set state / call fetch(...)
-  };
-
   return (
     <footer className="px-6 py-12 mt-20">
       <div className="max-w-6xl mx-auto">
@@ -79,7 +65,7 @@ export const Footer: React.FC = () => {
             <motion.div variants={itemVariants} className="space-y-4">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">{ownerName}</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Digital designer & developer creating meaningful experiences.
+                Data Engineer, Software Developer, Tech Enthusiast. Building innovative solutions and crafting seamless digital experiences.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
@@ -145,28 +131,6 @@ export const Footer: React.FC = () => {
                 ))}
               </ul>
             </motion.div>
-
-            {/* Newsletter */}
-            <motion.div variants={itemVariants} className="space-y-4">
-              <h4 className="text-gray-900 dark:text-white font-medium text-sm uppercase tracking-wider">Newsletter</h4>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Subscribe to get updates on my latest work.
-              </p>
-              <form className="space-y-3" onSubmit={handleSubscribe}>
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 dark:bg-gray-800/50 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-300 focus:border-gray-900 dark:focus:border-gray-300 w-full"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-200 dark:text-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 w-full"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </motion.div>
           </div>
 
           {/* Bottom bar */}
@@ -178,14 +142,10 @@ export const Footer: React.FC = () => {
             viewport={{ once: true }}
           >
             <div>
-              <p>© {currentYear} {ownerName}. All rights reserved.</p>
+              <p>© {currentYear} Lazxrus. All rights reserved.</p>
             </div>
 
             <div className="flex items-center space-x-6">
-              {/* ! TODO: Replace '#' with real policy routes or pages */}
-              <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors">Terms</a>
-              <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors">Cookies</a>
               <motion.a
                 href="#hero"
                 aria-label="Back to top"

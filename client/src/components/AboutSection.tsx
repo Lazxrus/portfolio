@@ -41,7 +41,6 @@ export const AboutSection = (): React.ReactElement => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   }, []);
 
-  // ! TODO: Change achievements to real data
   const achievements: Achievement[] = [
     { number: "12+", label: "ETL Projects", icon: <Briefcase className="h-5 w-5" />, suffix: "" },
     { number: "1", label: "Years Exp", icon: <Calendar className="h-5 w-5" />, suffix: "+" },
