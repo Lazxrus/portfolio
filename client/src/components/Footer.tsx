@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUp, Mail, Phone } from "lucide-react";
+import { ArrowUp, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 type SocialLink = { icon: React.ReactNode; href: string; label: string };
@@ -54,20 +54,20 @@ export const Footer: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         {/* Glass background container */}
         <motion.div
-          className="backdrop-blur-lg bg-white/70 dark:bg-gray-900/70 rounded-xl p-8 border border-white/20 dark:border-gray-700/50 shadow-lg"
+          className="backdrop-blur-lg bg-white/70 dark:bg-gray-900/70 rounded-xl p-8 border border-white/20 dark:border-gray-700/50 shadow-lg text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Branding */}
             <motion.div variants={itemVariants} className="space-y-4">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">{ownerName}</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
                 Data Engineer, Software Developer, Tech Enthusiast. Building innovative solutions and crafting seamless digital experiences.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 justify-center">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={index}
@@ -113,7 +113,7 @@ export const Footer: React.FC = () => {
                 {contactInfo.map((info, index) => (
                   <motion.li
                     key={index}
-                    className="flex items-start space-x-3 text-sm"
+                    className="flex items-start space-x-3 text-sm justify-center"
                     whileHover={{ scale: 1.02 }}
                   >
                     <span className="text-gray-600 dark:text-gray-400 mt-0.5">{info.icon}</span>

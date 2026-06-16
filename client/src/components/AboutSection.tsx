@@ -34,7 +34,7 @@ interface TabContent {
 
 export const AboutSection = (): React.ReactElement => {
   const [activeTab, setActiveTab] = useState<TabType>('personal');
-  const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
+  const [, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const [counter, setCounter] = useState<number>(0);
 
   const handleMouseMove = useCallback((e: MouseEvent): void => {

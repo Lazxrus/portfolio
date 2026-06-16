@@ -4,7 +4,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // !TODO: Import your images
 import dockerIcon from "@/assets/icons/docker.png";
+import flaskIcon from "@/assets/icons/flask.png";
 import gitIcon from "@/assets/icons/git.png";
+import githubIcon from "@/assets/icons/github.png";
+import linuxIcon from "@/assets/icons/linux.png";
+import mongodbIcon from "@/assets/icons/mongodb.png";
+import numpyIcon from "@/assets/icons/numpy.png";
+import pandasIcon from "@/assets/icons/pandas.png";
+import plotlyIcon from "@/assets/icons/plotly.png";
+import postgresqlIcon from "@/assets/icons/postgresql.png";
+import pythonIcon from "@/assets/icons/python.png";
+import sqlIcon from "@/assets/icons/sql.png";
+import vscodeIcon from "@/assets/icons/vscode.png";
 
 type Skill = {
 	name: string;
@@ -43,6 +54,18 @@ const categories = [
 
 const iconImages: { [key: string]: string } = {
     docker: dockerIcon,
+    flask: flaskIcon,
+    git: gitIcon,
+    github: githubIcon,
+    linux: linuxIcon,
+    mongodb: mongodbIcon,
+    numpy: numpyIcon,
+    pandas: pandasIcon,
+    plotly: plotlyIcon,
+    postgresql: postgresqlIcon,
+    python: pythonIcon,
+    sql: sqlIcon,
+    vscode: vscodeIcon,
 };
 
 const SkillBar = ({ level }: { level: number }) => (

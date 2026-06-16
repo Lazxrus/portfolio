@@ -6,16 +6,11 @@ import {
   User,
   Code,
   Briefcase,
-  MessageSquare,
-  Mail,
-  BookOpen,
   Sun,
   Moon,
-  Volume2,
-  VolumeX,
   Globe,
 } from "lucide-react";
-import { FaGithub, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -26,10 +21,6 @@ const navItems: NavItem[] = [
   { name: "About", href: "#about", icon: User },
   { name: "Skills", href: "#skills", icon: Code },
   { name: "Projects", href: "#projects", icon: Briefcase },
-  { name: "Testimonials", href: "#testimonials", icon: MessageSquare },
-  { name: "Contact", href: "#contact", icon: Mail },
-  // ! TODO: Change Blog URL to your blog (if any)
-  { name: "Blog", href: "https://blogni.vercel.app", icon: BookOpen },
 ];
 
 const ThemeToggle: FC = () => {
@@ -74,48 +65,7 @@ const ThemeToggle: FC = () => {
 export const Navbar: FC = () => {
   const [activeSection, setActiveSection] = useState<string>("#hero");
   const [showNavbar, setShowNavbar] = useState(true);
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
-  const [isAudioReady, setIsAudioReady] = useState(false);
   const lastScrollYRef = useRef<number>(0);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  // ! TODO: Replace music.mp3 with your own audio file or remove if not needed
-  const musicUrl = "/music.mp3";
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const audio = new Audio(musicUrl);
-    audio.loop = true;
-    audio.volume = 0.5;
-    audio.preload = "auto";
-
-    const handleCanPlay = () => setIsAudioReady(true);
-    audio.addEventListener("canplaythrough", handleCanPlay);
-
-    audioRef.current = audio;
-
-    return () => {
-      audio.pause();
-      audio.removeEventListener("canplaythrough", handleCanPlay);
-      audioRef.current = null;
-    };
-  }, [musicUrl]);
-
-  const toggleMusic = async () => {
-    if (!audioRef.current || !isAudioReady) return;
-
-    try {
-      if (isMusicPlaying) {
-        audioRef.current.pause();
-      } else {
-        await audioRef.current.play();
-      }
-      setIsMusicPlaying((v) => !v);
-    } catch (err) {
-      console.error("Audio play error:", err);
-    }
-  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -224,43 +174,6 @@ export const Navbar: FC = () => {
         >
           <FaLinkedin className="w-5 h-5" />
         </motion.a>
-
-        <motion.a
-          // ! TODO: Change https://www.youtube.com/@codewithkinu to your YouTube channel (if any)
-          href="https://www.youtube.com/@codewithkinu"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(
-            "p-2 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md",
-            "text-red-600 hover:bg-red-100 dark:hover:bg-red-900/50",
-            "border border-gray-200 dark:border-gray-700 shadow-sm",
-            "flex items-center justify-center"
-          )}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          title="YouTube Channel"
-          aria-label="YouTube Channel"
-        >
-          <FaYoutube className="w-5 h-5" />
-        </motion.a>
-
-        <motion.button
-          onClick={toggleMusic}
-          disabled={!isAudioReady}
-          className={cn(
-            "p-2 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md",
-            "text-primary hover:bg-primary/10 dark:hover:bg-primary/20",
-            "border border-gray-200 dark:border-gray-700 shadow-sm",
-            "flex items-center justify-center",
-            !isAudioReady && "opacity-50 cursor-not-allowed"
-          )}
-          whileHover={{ scale: isAudioReady ? 1.05 : 1 }}
-          whileTap={{ scale: isAudioReady ? 0.95 : 1 }}
-          title={isAudioReady ? (isMusicPlaying ? "Pause music" : "Play music") : "Loading music..."}
-          aria-label={isAudioReady ? (isMusicPlaying ? "Pause music" : "Play music") : "Loading music"}
-        >
-          {isMusicPlaying ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
-        </motion.button>
       </motion.div>
 
       {/* Bottom Navbar */}
