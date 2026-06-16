@@ -1,37 +1,32 @@
-# Build stage
-FROM node:22-alpine AS build
+# Use the official Nginx image as the base image
+FROM node:alpine AS build
 
+# Set a working directory
 WORKDIR /app
 
-# Copy package files
+# Copy the configuration file
 COPY client/package*.json ./
 
-# Install dependencies
+# Install dependencies ci is used to install the exact versions of dependencies specified in package-lock.json
 RUN npm ci
 
 # Copy source code
 COPY client/ ./
 
-# Build the React app
+# Run npm build to create the production build
 RUN npm run build
 
 # Production stage
-FROM node:22-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+# Set a working directory
+WORKDIR /usr/share/nginx/html
 
-# Install a simple HTTP server to serve static files
-RUN npm install -g serve
+# Copy the built files from the previous stage
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy built assets from build stage
-COPY --from=build /app/dist ./dist
+# Expose the port that Nginx will listen on
+EXPOSE 80
 
-# Expose port
-EXPOSE 3000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
-
-# Start the server
-CMD ["serve", "-s", "dist", "-l", "3000"]
+# Start Nginx when the container starts
+CMD ["nginx", "-g", "daemon off;"]

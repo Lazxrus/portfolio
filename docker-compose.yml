@@ -2,7 +2,8 @@ services:
   portfolio:
     build: .
     ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - PORT=3000
+      - 3000:80
+    container_name: my-portfolio
+
+# RUN ABOVE EVERY TIME YOU MAKE CHANGES TO THE CODE TO SEE THE CHANGES REFLECTED IN THE CONTAINER
+# docker compose down && docker compose up --build
