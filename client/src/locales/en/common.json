@@ -1,0 +1,124 @@
+{
+  "welcome": {
+    "messages": [
+      "Setting up the stage...",
+      "Coding in progress...",
+      "Dialing up the creativity...",
+      "Almost there..."
+    ],
+    "greeting": "Hello",
+    "exclamation": "There !",
+    "description": "Coding up something awesome for you"
+  },
+  
+  "hero": {
+    "badge": "Welcome to my portfolio",
+    "name": "Hi I'm Ivo",
+    "title": "Data Engineer",
+    "description": "I turn complex data into actionable insights production-ready services. Specializing in Python for data analysis, ETL pipelines, and backend APIs.",
+    "achievements": [
+      {
+        "number": "1+",
+        "label": "Years of Experience"
+      },
+      {
+        "number": "8+",
+        "label": "Portfolio Projects"
+      },
+      {
+        "number": "Always",
+        "label": "Learning & Improving"
+      }
+    ],
+    "cta": {
+      "projects": "View Projects",
+      "resume": "View Resume"
+    },
+    "codeEditor": {
+      "filename": "data_engineer.py",
+      "label": "Solutions",
+      "builtWith": "Built with",
+      "tech": "Modern Tech"
+    },
+    "scroll": {
+      "hint": "Scroll to Explore!"
+    }
+  },
+  
+  "about": {
+    "badge": "ABOUT ME",
+    "title": {
+      "part1": "Transforming",
+      "part2": "Data Into Insight"
+    },
+    "description": "Building scalable data pipelines that combine reliability, efficiency, and insights",
+    "profile": {
+      "title": "Python Developer"
+    },
+    "achievements": [
+      {
+        "number": "12+",
+        "label": "ETL Projects"
+      },
+      {
+        "number": "1",
+        "label": "Years Exp"
+      },
+      {
+        "number": "100",
+        "label": "APIs Parsed"
+      },
+      {
+        "number": "Python",
+        "label": "Proficiency"
+      }
+    ],
+    "tabs": {
+      "personal": "Passionate about building robust data solutions and scalable backend systems. I enjoy solving complex problems with clean Python code, contributing to open-source projects, and continuously expanding my knowledge in the world of programming.",
+      "professional": "As a Junior Python Developer, I've built multiple ETL projects and data pipelines processing 100s of APIs. I specialize in data extraction, transformation, and pipeline development using modern Python frameworks and databases.",
+      "approach": "I focus on writing maintainable, well-documented code with proper error handling. My approach emphasizes understanding data flows, optimizing queries, and building reliable systems that scale efficiently.",
+      "labels": {
+        "personal": "Personal",
+        "professional": "Professional",
+        "approach": "Approach"
+      }
+    },
+    "techStack": {
+      "title": "Tech Stack Overview",
+      "0": {
+        "category": "Backend"
+      },
+      "1": {
+        "category": "Databases"
+      },
+      "2": {
+        "category": "DevOps"
+      }
+    }
+  },
+
+  "skills": {
+    "badge": "My Skills",
+    "title": "My Tech Stack",
+    "description": "Technologies I'm learning and using, with proficiency levels. Always eager to expand my skill set and take on new challenges!",
+    "categories": [
+      {
+        "label": "All Skills"
+      },
+      {
+        "label": "Backend"
+      },
+      {
+        "label": "Data"
+      },
+      {
+        "label": "Tools"
+      }
+    ],
+    "skillLevels": {
+      "basic": "Basic",
+      "advanced": "Advanced",
+      "expert": "Expert"
+    }
+  }
+}

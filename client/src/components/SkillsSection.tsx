@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
+import { useI18n } from "@/hooks/useI18n";
 
-// !TODO: Import your images
 import dockerIcon from "@/assets/icons/docker.png";
 import flaskIcon from "@/assets/icons/flask.png";
 import gitIcon from "@/assets/icons/git.png";
@@ -43,13 +43,6 @@ const skills: Skill[] = [
     { name: "GitHub", level: 85, category: "tools", icon: "github" },
     { name: "VS Code", level: 85, category: "tools", icon: "vscode" },
     { name: "Linux", level: 75, category: "tools", icon: "linux" },
-];
-
-const categories = [
-    { id: "all", label: "All Skills", color: "bg-gradient-to-r from-purple-500 to-pink-500" },
-    { id: "backend", label: "Backend", color: "bg-gradient-to-r from-blue-500 to-cyan-500" },
-    { id: "data", label: "Data", color: "bg-gradient-to-r from-green-500 to-emerald-500" },
-    { id: "tools", label: "Tools", color: "bg-gradient-to-r from-orange-500 to-yellow-500" },
 ];
 
 const iconImages: { [key: string]: string } = {
@@ -125,6 +118,15 @@ const InfiniteScrollSkills = ({ skills }: { skills: Skill[] }) => {
 
 export const SkillsSection = () => {
     const [activeCategory, setActiveCategory] = useState("all");
+    const { t } = useI18n();
+
+    const categories = [
+        { id: "all", label: t("skills.categories.0.label"), color: "bg-gradient-to-r from-purple-500 to-pink-500" },
+        { id: "backend", label: t("skills.categories.1.label"), color: "bg-gradient-to-r from-blue-500 to-cyan-500" },
+        { id: "data", label: t("skills.categories.2.label"), color: "bg-gradient-to-r from-green-500 to-emerald-500" },
+        { id: "tools", label: t("skills.categories.3.label"), color: "bg-gradient-to-r from-orange-500 to-yellow-500" },
+    ];
+
     const filteredSkills = skills.filter(
         (skill) => activeCategory === "all" || skill.category === activeCategory
     );
@@ -141,16 +143,16 @@ export const SkillsSection = () => {
                     viewport={{ once: true }}
                 >
                     <Sparkles className="h-4 w-4" />
-                    My Skills
+                    {t("skills.badge")}
                 </motion.div>
 
                 {/* Hero */}
                 <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-15">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-1 bg-clip-text text-transparent bg-linear-to-br from-primary to-primary/80 leading-tight">
-                        My Tech Stack
+                        {t("skills.title")}
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                        Technologies I'm learning and using, with proficiency levels. Always eager to expand my skill set and take on new challenges!
+                        {t("skills.description")}
                     </p>
                 </motion.div>
 
@@ -209,9 +211,9 @@ export const SkillsSection = () => {
                                             </div>
                                             <SkillBar level={skill.level} />
                                             <div className="mt-2 flex justify-between text-xs text-muted-foreground">
-                                                <span>Basic</span>
-                                                <span>Advanced</span>
-                                                <span>Expert</span>
+                                                <span>{t("skills.skillLevels.basic")}</span>
+                                                <span>{t("skills.skillLevels.advanced")}</span>
+                                                <span>{t("skills.skillLevels.expert")}</span>
                                             </div>
                                         </div>
                                     </div>

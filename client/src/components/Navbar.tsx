@@ -8,11 +8,12 @@ import {
   Briefcase,
   Sun,
   Moon,
-  Globe,
+  Languages,
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/hooks/useI18n";
 
 type NavItem = { name: string; href: string; icon: LucideIcon };
 
@@ -62,6 +63,29 @@ const ThemeToggle: FC = () => {
   );
 };
 
+const LanguageSwitcher: FC = () => {
+  const { i18n } = useI18n();
+
+  return (
+    <motion.button
+      onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')}
+      className={cn(
+        "p-2 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md",
+        "text-green-600 hover:bg-purple-100 dark:hover:bg-purple-900/50",
+        "border border-gray-200 dark:border-gray-700 shadow-sm",
+        "flex items-center justify-center"
+      )}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      title={`Switch to ${i18n.language === 'en' ? 'Spanish' : 'English'}`}
+      aria-label={`Switch to ${i18n.language === 'en' ? 'Spanish' : 'English'}`}
+      aria-pressed={i18n.language === 'es'}
+    >
+      <Languages className="w-5 h-5" />
+    </motion.button>
+  );
+};
+
 export const Navbar: FC = () => {
   const [activeSection, setActiveSection] = useState<string>("#hero");
   const [showNavbar, setShowNavbar] = useState(true);
@@ -85,7 +109,6 @@ export const Navbar: FC = () => {
       const scrollPosition = currentScrollY + 100;
 
       for (const section of sections) {
-        // only query selectors for fragment ids like #id
         if (!section.startsWith("#")) continue;
         const element = document.querySelector<HTMLElement>(section);
         if (!element) continue;
@@ -118,28 +141,10 @@ export const Navbar: FC = () => {
         role="toolbar"
         aria-label="Quick links"
       >
-        <motion.a
-          // ! TODO: Change https://avoliq.vercel.app to your personal website URL
-          href="https://avoliq.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(
-            "p-2 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md",
-            "text-green-600 hover:bg-green-100 dark:hover:bg-green-900/50",
-            "border border-gray-200 dark:border-gray-700 shadow-sm",
-            "flex items-center justify-center"
-          )}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          title="My Website"
-          aria-label="My Website"
-        >
-          <Globe className="w-5 h-5" />
-        </motion.a>
+        <LanguageSwitcher />
 
         <motion.a
-          // ! TODO: Change https://github.com/sahilmd01 to your GitHub profile URL
-          href="https://github.com/sahilmd01"
+          href="https://github.com/Lazxrus"
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
@@ -157,8 +162,7 @@ export const Navbar: FC = () => {
         </motion.a>
 
         <motion.a
-          // ! TODO: Change https://linkedin.com/in/codewithkinu to your LinkedIn profile URL
-          href="https://linkedin.com/in/codewithkinu"
+          href="https://linkedin.com/in/ivovallejos"
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
@@ -230,7 +234,7 @@ export const Navbar: FC = () => {
                 </a>
               );
             })}
-            <div className="flex items-center px-2">
+            <div className="flex items-center px-2 gap-1">
               <ThemeToggle />
             </div>
           </div>

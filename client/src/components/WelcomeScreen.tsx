@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useI18n } from "@/hooks/useI18n";
 
 interface WelcomeScreenProps {
     onWelcomeComplete: () => void;
@@ -14,7 +15,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
     const [phase, setPhase] = useState<number>(0);
     const [exitAnimation, setExitAnimation] = useState<boolean>(false);
     const [typedText, setTypedText] = useState<string>("");
-    const { theme, resolvedTheme } = useTheme();
+    const { resolvedTheme } = useTheme();
+    const { t } = useI18n();
 
     // Theme-based colors
     const colors: Record<ThemeKey, {
@@ -42,13 +44,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
 
     const currentTheme: ThemeKey = resolvedTheme === "dark" ? "dark" : "light";
     const currentColors = colors[currentTheme];
-    const bottomText: string = "Coding up something awesome for you";
-    const welcomeMessages: string[] = [
-        "Setting up the stage...",
-        "Coding in progress...",
-        "Dialing up the creativity...",
-        "Almost there..."
-    ];
+    const bottomText: string = t('welcome.description');
+    const welcomeMessages: string[] = t('welcome.messages', { returnObjects: true }) as string[];
 
     // Message and animation duration management
     useEffect(() => {
@@ -214,7 +211,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
                                 initial="hidden"
                                 animate="visible"
                             >
-                                <span className="inline-block">Hello</span>
+                                <span className="inline-block">{t('welcome.greeting')}</span>
                                 <motion.span
                                     className="inline-block ml-2 sm:ml-3 relative"
                                     style={{ color: currentColors.secondary }}
@@ -222,7 +219,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onWelcomeComplete }) => {
                                     initial="hidden"
                                     animate="visible"
                                 >
-                                    There !
+                                    {t('welcome.exclamation')}
                                     <motion.span
                                         className="absolute -bottom-1 sm:-bottom-2 left-0 h-0.5 sm:h-1 w-full"
                                         style={{ backgroundColor: currentColors.secondary }}

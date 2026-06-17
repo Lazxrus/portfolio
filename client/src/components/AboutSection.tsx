@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Briefcase, Code, Calendar, Sparkles, Target } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useI18n } from "@/hooks/useI18n";
 
 type TabType = 'personal' | 'professional' | 'approach';
 
@@ -16,11 +17,6 @@ interface TechStack {
   items: string[];
 }
 
-interface SocialLink {
-  icon: React.ReactNode;
-  href: string;
-}
-
 interface MousePosition {
   x: number;
   y: number;
@@ -33,6 +29,7 @@ interface TabContent {
 }
 
 export const AboutSection = (): React.ReactElement => {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState<TabType>('personal');
   const [, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const [counter, setCounter] = useState<number>(0);
@@ -42,22 +39,22 @@ export const AboutSection = (): React.ReactElement => {
   }, []);
 
   const achievements: Achievement[] = [
-    { number: "12+", label: "ETL Projects", icon: <Briefcase className="h-5 w-5" />, suffix: "" },
-    { number: "1", label: "Years Exp", icon: <Calendar className="h-5 w-5" />, suffix: "+" },
-    { number: "100", label: "APIs Parsed", icon: <Target className="h-5 w-5" />, suffix: "+" },
-    { number: "Python", label: "Proficiency", icon: <Code className="h-5 w-5" />, suffix: "" }
+    { number: "+12", label: t("about.achievements.0.label"), icon: <Briefcase className="h-5 w-5" />, suffix: "" },
+    { number: "+1", label: t("about.achievements.1.label"), icon: <Calendar className="h-5 w-5" />, suffix: "" },
+    { number: "+100", label: t("about.achievements.2.label"), icon: <Target className="h-5 w-5" />, suffix: "" },
+    { number: "Python", label: t("about.achievements.3.label"), icon: <Code className="h-5 w-5" />, suffix: "" }
   ];
 
   const techStack: TechStack[] = [
-    { category: "Backend", items: ["Python", "Pandas", "NumPy", "SQLAlchemy"] },
-    { category: "Databases", items: ["PostgreSQL", "MongoDB", "SQL", "SQLite"] },
-    { category: "DevOps", items: ["Docker", "Git", "Linux", "Vercel"] },
+    { category: t("about.techStack.0.category"), items: ["Python", "Pandas", "NumPy", "SQLAlchemy"] },
+    { category: t("about.techStack.1.category"), items: ["PostgreSQL", "MongoDB", "SQL", "SQLite"] },
+    { category: t("about.techStack.2.category"), items: ["Docker", "Git", "Linux", "Vercel"] },
   ];
 
   const tabContent: TabContent = {
-    personal: "Passionate about building robust data solutions and scalable backend systems. I enjoy solving complex problems with clean Python code, contributing to open-source projects, and continuously expanding my knowledge in data engineering.",
-    professional: "As a Junior Python Developer, I've built 12+ ETL projects and data pipelines processing 100+ APIs. I specialize in data extraction, transformation, and pipeline development using modern Python frameworks and databases.",
-    approach: "I focus on writing maintainable, well-documented code with proper error handling. My approach emphasizes understanding data flows, optimizing queries, and building reliable systems that scale efficiently."
+    personal: t("about.tabs.personal"),
+    professional: t("about.tabs.professional"),
+    approach: t("about.tabs.approach")
   };
 
   useEffect(() => {
@@ -92,14 +89,14 @@ export const AboutSection = (): React.ReactElement => {
             <div className="relative">
               <Sparkles className="h-4 sm:h-5 w-4 sm:w-5 text-primary animate-pulse" />
             </div>
-            <span className="text-sm sm:text-base font-semibold text-primary tracking-wide">ABOUT ME</span>
+            <span className="text-sm sm:text-base font-semibold text-primary tracking-wide">{t("about.badge")}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
-            <span className="bg-linear-to-r from-foreground to-primary bg-clip-text text-transparent">Transforming</span>
-            <span className="block text-primary animate-pulse">Data Into Insight</span>
+            <span className="bg-linear-to-r from-foreground to-primary bg-clip-text text-transparent">{t("about.title.part1")}</span>
+            <span className="block text-primary animate-pulse">{t("about.title.part2")}</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Building scalable data pipelines that combine <span className="text-primary font-semibold">reliability</span>, <span className="text-primary font-semibold">efficiency</span>, and <span className="text-primary font-semibold">insights</span>
+            {t("about.description")}
           </p>
         </div>
 
@@ -126,7 +123,7 @@ export const AboutSection = (): React.ReactElement => {
                   {/* Achievements */}
                   <div className="flex-1 text-center md:text-left">
                     <h2 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">Ivo Vallejos</h2>
-                    <p className="text-primary text-base sm:text-lg font-semibold mb-3 sm:mb-4">Python Developer</p>
+                    <p className="text-primary text-base sm:text-lg font-semibold mb-3 sm:mb-4">{t("about.profile.title")}</p>
                     <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
                       {achievements.map((achievement: Achievement, index: number) => (
                         <div key={index} className={`p-2 sm:p-3 rounded-xl bg-background/50 border border-border transition-all duration-300 hover:scale-105 hover:border-primary/30 ${counter === index ? 'bg-primary/10 border-primary/50' : ''}`}>
@@ -151,7 +148,7 @@ export const AboutSection = (): React.ReactElement => {
                       onClick={() => handleTabClick(tab)}
                       className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 text-sm sm:text-base font-medium transition-all duration-300 ${activeTab === tab ? 'text-primary border-b-2 border-primary' : 'text-muted-foreground hover:text-foreground'}`}
                     >
-                      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                      {t(`about.tabs.labels.${tab}`)}
                     </button>
                   ))}
                 </div>
@@ -177,7 +174,7 @@ export const AboutSection = (): React.ReactElement => {
             {/* Tech Stack */}
             <div className="bg-card/50 border border-border rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:shadow-3xl hover:border-primary/40 hover:bg-card/60">
               <h3 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
-                <Code className="h-4 sm:h-6 w-4 sm:w-6 text-primary" />Tech Stack Overview
+                <Code className="h-4 sm:h-6 w-4 sm:w-6 text-primary" />{t("about.techStack.title")}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                 {techStack.map((stack: TechStack, index: number) => (

@@ -49,7 +49,7 @@ export const StarBackground: React.FC = () => {
 
   const generateStars = () => {
     // Adjust density based on screen size (more stars for larger screens)
-    const densityDivisor = window.innerWidth < 768 ? 12000 : 15000;
+    const densityDivisor = window.innerWidth < 1000 ? 12000 : 15000;
     const numberOfStars = Math.floor(
       (window.innerWidth * window.innerHeight) / densityDivisor
     );

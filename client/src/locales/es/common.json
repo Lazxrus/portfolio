@@ -1,0 +1,124 @@
+{
+  "welcome": {
+    "messages": [
+      "Preparando el escenario...",
+      "Compilación en progreso...",
+      "Ajustando la creatividad...",
+      "Casi estamos..."
+    ],
+    "greeting": "¡Bien",
+    "exclamation": "venido!",
+    "description": "Creando algo increíble para ti"
+  },
+
+  "hero": {
+    "badge": "Bienvenido a mi portafolio",
+    "name": "Hola, soy Ivo",
+    "title": "Ingeniero de Datos",
+    "description": "Convierto datos complejos en información útil y servicios listos para producción. Especializado en Python para análisis de datos, pipelines ETL y APIs backend.",
+    "achievements": [
+      {
+        "number": "+1",
+        "label": "Años de Experiencia"
+      },
+      {
+        "number": "+8",
+        "label": "Proyectos de Portafolio"
+      },
+      {
+        "number": "Siempre",
+        "label": "Aprendiendo y Mejorando"
+      }
+    ],
+    "cta": {
+      "projects": "Ver Proyectos",
+      "resume": "Ver Currículum"
+    },
+    "codeEditor": {
+      "filename": "data_engineer.py",
+      "label": "Soluciones",
+      "builtWith": "Construido con",
+      "tech": "Tecnología Moderna"
+    },
+    "scroll": {
+      "hint": "Desliza para Explorar"
+    }
+  },
+
+  "about": {
+    "badge": "SOBRE MÍ",
+    "title": {
+      "part1": "Transformando",
+      "part2": "Datos en Información"
+    },
+    "description": "Construyendo pipelines de datos escalables combinando eficiencia e información útil",
+    "profile": {
+      "title": "Desarrollador Python"
+    },
+    "achievements": [
+      {
+        "number": "+12",
+        "label": "Proyectos"
+      },
+      {
+        "number": "+1",
+        "label": "Años de Exp"
+      },
+      {
+        "number": "+100",
+        "label": "APIs Procesadas"
+      },
+      {
+        "number": "Python",
+        "label": "Lenguaje Principal"
+      }
+    ],
+    "tabs": {
+      "personal": "Apasionado por construir soluciones robustas de datos y sistemas backend escalables. Disfruto resolver problemas complejos con Python, contribuyendo a proyectos internos y expandiendo continuamente mis conocimientos en el mundo de la programación.",
+      "professional": "Como Desarrollador Python Junior, he construido múltiples proyectos ETL y pipelines de datos que procesan cientos de APIs. Me especializo en extracción de datos, transformación y desarrollo de pipelines usando frameworks Python modernos y bases de datos.",
+      "approach": "Me enfoco en escribir código accesible y documentado con el manejo apropiado de errores. Mi enfoque enfatiza entender los flujos de datos, optimizar consultas y construir sistemas confiables que escalen eficientemente.",
+      "labels": {
+        "personal": "Personal",
+        "professional": "Profesional",
+        "approach": "Enfoque"
+      }
+    },
+    "techStack": {
+      "title": "Resumen de Stack",
+      "0": {
+        "category": "Backend"
+      },
+      "1": {
+        "category": "Bases de Datos"
+      },
+      "2": {
+        "category": "DevOps"
+      }
+    }
+  },
+
+  "skills": {
+    "badge": "Mis Habilidades",
+    "title": "Mi Stack Tecnológico",
+    "description": "Tecnologías que estoy aprendiendo y usando, con niveles de competencia. ¡Siempre intentando de expandir mi conjunto de habilidades y enfrentando nuevos desafíos!",
+    "categories": [
+      {
+        "label": "Mis Habilidades"
+      },
+      {
+        "label": "Backend"
+      },
+      {
+        "label": "Datos"
+      },
+      {
+        "label": "Herramientas"
+      }
+    ],
+    "skillLevels": {
+      "basic": "Principiante",
+      "advanced": "Intermedio",
+      "expert": "Avanzado"
+    }
+  }
+}

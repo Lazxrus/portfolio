@@ -1,8 +1,10 @@
 import { MousePointerClick, Code, Award, Download, Shield, Zap, TrendingUp, Briefcase } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { useI18n } from "@/hooks/useI18n";
 
 export const HeroSection = () => {
+  const { t } = useI18n();
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true });
   const [currentCodeLine, setCurrentCodeLine] = useState(0);
@@ -27,9 +29,9 @@ export const HeroSection = () => {
   ];
 
   const achievements = [
-    { number: "1+", label: "Years of Experience", icon: <Shield className="h-3 w-3" /> },
-    { number: "8+", label: "Portfolio Projects", icon: <Zap className="h-3 w-3" /> },
-    { number: "Always", label: "Learning & Improving", icon: <Award className="h-3 w-3" /> }
+    { number: t("hero.achievements.0.number"), label: t("hero.achievements.0.label"), icon: <Shield className="h-3 w-3" /> },
+    { number: t("hero.achievements.1.number"), label: t("hero.achievements.1.label"), icon: <Zap className="h-3 w-3" /> },
+    { number: t("hero.achievements.2.number"), label: t("hero.achievements.2.label"), icon: <Award className="h-3 w-3" /> }
   ];
 
   useEffect(() => {
@@ -103,18 +105,18 @@ export const HeroSection = () => {
           
           <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
             <motion.div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8 backdrop-blur-sm" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
-              <Briefcase className="h-4 w-4" /> Welcome to my portfolio
+              <Briefcase className="h-4 w-4" /> {t("hero.badge")}
             </motion.div>
 
             <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
-              <span className="block text-foreground">Hi I'm Ivo</span>
+              <span className="block text-foreground">{t("hero.name")}</span>
               <motion.span className="block bg-linear-to-r from-primary via-purple-600 to-pink-600 bg-clip-text text-transparent mt-2 pb-1" animate={{ backgroundPosition: ['0%', '100%', '0%'] }} transition={{ duration: 8, repeat: Infinity }} style={{ backgroundSize: '200% 100%' }}>
-                Data Engineer
+                {t("hero.title")}
               </motion.span>
             </motion.h1>
 
             <motion.p className="text-lg sm:text-xl text-muted-foreground mt-6 leading-relaxed max-w-2xl" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
-              I turn <span className="text-primary font-semibold">complex data into actionable insights</span> production-ready services. Specializing in Python for data analysis, ETL pipelines, and backend APIs.
+              {t("hero.description")}
             </motion.p>
 
             <motion.div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-8" variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}>
@@ -133,7 +135,7 @@ export const HeroSection = () => {
               {/* ! TODO: Update anchor href if your section IDs differ (#projects). */}
               <motion.a href="#projects" className="group relative overflow-hidden px-8 py-4 rounded-xl font-semibold bg-linear-to-r from-primary to-purple-600 text-primary-foreground shadow-lg hover:shadow-xl text-sm flex items-center justify-center gap-3" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
                 <Code className="h-5 w-5" /> 
-                <span>View Projects</span>
+                <span>{t("hero.cta.projects")}</span>
                 <TrendingUp className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </motion.a>
               
@@ -144,7 +146,7 @@ export const HeroSection = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Download className="h-4 w-4" /> 
-                <span>View Resume</span>
+                <span>{t("hero.cta.resume")}</span>
               </motion.button>
             </motion.div>
           </div>
@@ -160,7 +162,7 @@ export const HeroSection = () => {
                     <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
                   </div>
                   <div className="flex-1 text-center">
-                    <div className="text-sm font-mono font-semibold text-muted-foreground">portfolio.js</div> {/* ! TODO: change displayed filename if desired */}
+                    <div className="text-sm font-mono font-semibold text-muted-foreground">data_engineer.py</div>
                   </div>
                   <div className="w-4 h-4 bg-green-400/20 rounded-full animate-pulse"></div>
                 </div>
@@ -212,7 +214,7 @@ export const HeroSection = () => {
                 
                 <motion.div className="absolute -top-3 -left-3 bg-background/90 backdrop-blur-sm px-4 py-2 rounded-xl border border-border shadow-lg flex items-center gap-2" initial={{ scale: 0, rotate: -180 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 1.5, type: "spring" }}>
                   <Award className="h-4 w-4 text-amber-500" />
-                  <span className="text-sm font-semibold text-foreground">Solutions</span>
+                  <span className="text-sm font-semibold text-foreground">{t("hero.codeEditor.label")}</span>
                 </motion.div>
                 
                 <motion.div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-background/90 backdrop-blur-sm px-4 py-2 rounded-xl border border-border shadow-lg text-center" initial={{ scale: 0, y: 20 }} animate={{ scale: 1, y: 0 }} transition={{ delay: 2, type: "spring" }}>
@@ -228,7 +230,7 @@ export const HeroSection = () => {
       <motion.div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: [0, 1, 1, 0], y: [0, 6, 0, -6] }} transition={{ duration: 3, repeat: Infinity, repeatDelay: 0.5 }}>
         <motion.div className="text-xs text-primary mb-3 flex items-center gap-2 px-4 py-2 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-lg" whileHover={{ scale: 1.05 }}>
           <MousePointerClick className="h-3 w-3" />
-          <span>Explore Technical Portfolio</span>
+          <span>{t("hero.scroll.hint")}</span>
         </motion.div>
         <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }} className="w-5 h-8 border-2 border-primary/30 rounded-full flex justify-center">
           <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }} className="w-1 h-2 bg-primary rounded-full mt-2" />
