@@ -1,10 +1,10 @@
-import { useState, useRef} from "react";
 import type { FC } from "react";
-import { ArrowRight, ChevronUp, Star, Code, Sparkles, Zap, Play, Eye, X } from "lucide-react";
+import { useState, useRef} from "react";
 import { FaGithub } from 'react-icons/fa';
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ChevronUp, Star, Code, Sparkles, Zap, Play, Eye, X } from "lucide-react";
+import { useI18n } from "@/hooks/useI18n";
 
-// ! TODO: Review the projects array below and replace demoUrl, githubUrl, image, and video paths with your own links/assets.
 type Project = {
   id: number;
   title: string;
@@ -21,81 +21,93 @@ type Project = {
   highlights?: string[];
 };
 
-// ! TODO: CREATE PROJECTS
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Vante & Co.",
-    category: "E-commerce",
-    description: "Fashion marketplace with product recommendations and seamless checkout experience.",
-    image: "/projects/project1.png",
-    video: "/projects/videos/vante-demo.mp4",
-    tags: ["React", "Node.js", "Stripe", "Redis"],
-    demoUrl: "https://e-commerce-website-4w6a.vercel.app",
-    githubUrl: "https://github.com/Sahilmd01/E-commerce-website", // ! TODO: update if needed
-    featured: true,
-    accentColor: "from-purple-500 to-indigo-600",
-    status: "Live",
-    highlights: ["Product catalog", "Shopping cart", "Payment processing"]
-  },
-  {
-    id: 2,
-    title: "Converse Pro",
-    category: "Real-time Communication",
-    description: "Chat platform with real-time messaging, media sharing, and user authentication.",
-    image: "/projects/project2.png",
-    video: "/projects/videos/converse-demo.mp4",
-    tags: ["Socket.IO", "MongoDB", "React", "WebRTC"],
-    demoUrl: "https://converse-pro-frontend.vercel.app",
-    githubUrl: "https://github.com/Sahilmd01/converse-pro", // ! TODO: update if needed
-    featured: true,
-    accentColor: "from-blue-500 to-cyan-600",
-    status: "Live",
-    highlights: ["Real-time chat", "Media sharing", "User authentication"]
-  },
-  {
-    id: 3,
-    title: "Blogni AI",
-    category: "Artificial Intelligence",
-    description: "AI-powered content generation platform with multi-language support.",
-    image: "/projects/project3.png",
-    video: "/projects/videos/blogni-demo.mp4",
-    tags: ["Next.js", "Gemini AI", "Clerk Auth", "Redis"],
-    demoUrl: "https://blogni.vercel.app",
-    githubUrl: "https://github.com/Sahilmd01/Blogni", // ! TODO: update if needed
-    accentColor: "from-amber-500 to-orange-600",
-    status: "Live",
-    highlights: ["AI content generation", "Multi-language", "User accounts"]
-  },
-];
-
-// ! TODO: Update categoryColors to match your app theme or category list if you add/remove categories.
-const categoryColors: Record<string, string> = {
-  "Healthcare SaaS": "from-emerald-500/20 to-teal-600/20 text-emerald-600 border-emerald-500/30",
-  "E-commerce": "from-purple-500/20 to-indigo-600/20 text-purple-600 border-purple-500/30",
-  "Real-time Communication": "from-blue-500/20 to-cyan-600/20 text-blue-600 border-blue-500/30",
-  "Artificial Intelligence": "from-amber-500/20 to-orange-600/20 text-amber-600 border-amber-500/30",
-  "FinTech": "from-rose-500/20 to-pink-600/20 text-rose-600 border-rose-500/30",
-  "Food Tech": "from-violet-500/20 to-purple-600/20 text-violet-600 border-violet-500/30",
-  "HR Tech": "from-orange-500/20 to-red-600/20 text-orange-600 border-orange-500/30"
-};
-
 export const ProjectsSection: FC = () => {
+  const { t } = useI18n();
   const [showAll, setShowAll] = useState<boolean>(false);
-  const [activeFilter, setActiveFilter] = useState<string>("All");
+  const [activeFilter, setActiveFilter] = useState<string>(t("projects.categories.all"));
   const [, setIsMobileFilterOpen] = useState<boolean>(false);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [selectedVideo, setSelectedVideo] = useState<Project | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Projects array with translations
+  const projects: Project[] = [
+    {
+      id: 1,
+      title: t("projects.items.0.title"),
+      category: t("projects.items.0.category"),
+      description: t("projects.items.0.description"),
+      image: "/projects/project1.png",
+      video: "/projects/videos/vante-demo.mp4",
+      tags: ["React", "Node.js", "Stripe", "Redis"],
+      demoUrl: "https://e-commerce-website-4w6a.vercel.app",
+      githubUrl: "https://github.com/Sahilmd01/E-commerce-website",
+      featured: true,
+      accentColor: "from-purple-500 to-indigo-600",
+      status: t("projects.items.0.status"),
+      highlights: [
+        t("projects.items.0.highlights.0"),
+        t("projects.items.0.highlights.1"),
+        t("projects.items.0.highlights.2")
+      ]
+    },
+    {
+      id: 2,
+      title: t("projects.items.1.title"),
+      category: t("projects.items.1.category"),
+      description: t("projects.items.1.description"),
+      image: "/projects/project2.png",
+      video: "/projects/videos/converse-demo.mp4",
+      tags: ["Socket.IO", "MongoDB", "React", "WebRTC"],
+      demoUrl: "https://converse-pro-frontend.vercel.app",
+      githubUrl: "https://github.com/Sahilmd01/converse-pro",
+      featured: true,
+      accentColor: "from-blue-500 to-cyan-600",
+      status: t("projects.items.1.status"),
+      highlights: [
+        t("projects.items.1.highlights.0"),
+        t("projects.items.1.highlights.1"),
+        t("projects.items.1.highlights.2")
+      ]
+    },
+    {
+      id: 3,
+      title: t("projects.items.2.title"),
+      category: t("projects.items.2.category"),
+      description: t("projects.items.2.description"),
+      image: "/projects/project3.png",
+      video: "/projects/videos/blogni-demo.mp4",
+      tags: ["Next.js", "Gemini AI", "Clerk Auth", "Redis"],
+      demoUrl: "https://blogni.vercel.app",
+      githubUrl: "https://github.com/Sahilmd01/Blogni",
+      accentColor: "from-amber-500 to-orange-600",
+      status: t("projects.items.2.status"),
+      highlights: [
+        t("projects.items.2.highlights.0"),
+        t("projects.items.2.highlights.1"),
+        t("projects.items.2.highlights.2")
+      ]
+    },
+  ];
+
+  const categoryColors: Record<string, string> = {
+    [t("projects.categories.healthcare")]: "from-emerald-500/20 to-teal-600/20 text-emerald-600 border-emerald-500/30",
+    [t("projects.categories.ecommerce")]: "from-purple-500/20 to-indigo-600/20 text-purple-600 border-purple-500/30",
+    [t("projects.categories.communication")]: "from-blue-500/20 to-cyan-600/20 text-blue-600 border-blue-500/30",
+    [t("projects.categories.ai")]: "from-amber-500/20 to-orange-600/20 text-amber-600 border-amber-500/30",
+    [t("projects.categories.fintech")]: "from-rose-500/20 to-pink-600/20 text-rose-600 border-rose-500/30",
+    [t("projects.categories.foodtech")]: "from-violet-500/20 to-purple-600/20 text-violet-600 border-violet-500/30",
+    [t("projects.categories.hrtech")]: "from-orange-500/20 to-red-600/20 text-orange-600 border-orange-500/30"
+  };
   
-  const filteredProjects = activeFilter === "All" 
+  const filteredProjects = activeFilter === t("projects.categories.all")
     ? projects 
     : projects.filter(project => project.category === activeFilter);
   
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
 
-  const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
+  const categories = [t("projects.categories.all"), ...Array.from(new Set(projects.map(project => project.category)))];
 
   const handleFilterChange = (category: string) => {
     setActiveFilter(category);
@@ -154,7 +166,7 @@ export const ProjectsSection: FC = () => {
             viewport={{ once: true }}
           >
             <Sparkles className="h-4 w-4" />
-            My Projects
+            {t("projects.badge")}
           </motion.div>
 
           <motion.h2 
@@ -164,8 +176,8 @@ export const ProjectsSection: FC = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Project
-            <span className="block text-primary">Portfolio</span>
+            {t("projects.title")}
+            <span className="block text-primary">{/* Removed hardcoded text */}</span>
           </motion.h2>
 
           <motion.p 
@@ -175,7 +187,7 @@ export const ProjectsSection: FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            A selection of my recent work showcasing a range of projects from different domains. Each project highlights my skills in design, development, and problem-solving.
+            {t("projects.description")}
           </motion.p>
         </motion.div>
 
@@ -240,7 +252,7 @@ export const ProjectsSection: FC = () => {
                     {/* Status Badge */}
                     <div className="absolute top-3 right-3">
                       <div className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
-                        project.status === "Live" 
+                        project.status === t("projects.items.0.status") || project.status === t("projects.items.1.status") || project.status === t("projects.items.2.status")
                           ? "bg-emerald-500/20 text-emerald-600 border border-emerald-500/30"
                           : "bg-amber-500/20 text-amber-600 border border-amber-500/30"
                       }`}>
@@ -250,7 +262,7 @@ export const ProjectsSection: FC = () => {
 
                     {/* Category Badge */}
                     <div className="absolute top-3 left-3">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border ${categoryColors[project.category]}`}>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border ${categoryColors[project.category] || "bg-primary/10 text-primary border-primary/20"}`}>
                         {project.category}
                       </span>
                     </div>
@@ -305,7 +317,7 @@ export const ProjectsSection: FC = () => {
                           transition={{ delay: index * 0.1 + 0.3 }}
                         >
                           <Star size={12} className="fill-amber-500" /> 
-                          Featured
+                          {t("projects.buttons.featured")}
                         </motion.div>
                       )}
                     </div>
@@ -350,7 +362,7 @@ export const ProjectsSection: FC = () => {
                         onClick={(e) => project.demoUrl === "#" && e.preventDefault()}
                       >
                         <Eye size={16} />
-                        {project.demoUrl === "#" ? "Coming Soon" : "Live Demo"}
+                        {project.demoUrl === "#" ? t("projects.buttons.comingSoon") : t("projects.buttons.liveDemo")}
                       </motion.a>
                       
                       <motion.a
@@ -367,7 +379,7 @@ export const ProjectsSection: FC = () => {
                         onClick={(e) => project.githubUrl === "#" && e.preventDefault()}
                       >
                         <FaGithub size={16} />
-                        Code
+                        {t("projects.buttons.code")}
                       </motion.a>
                     </div>
                   </div>
@@ -402,11 +414,11 @@ export const ProjectsSection: FC = () => {
               {showAll ? (
                 <>
                   <ChevronUp size={18} />
-                  Show Less
+                  {t("projects.buttons.showLess")}
                 </>
               ) : (
                 <>
-                  View More Projects
+                  {t("projects.buttons.viewMore")}
                   <ArrowRight size={18} />
                 </>
               )}
@@ -430,12 +442,12 @@ export const ProjectsSection: FC = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
             >
               <Zap className="h-4 w-4" />
-              Get In Touch
+              {t("projects.cta.badge")}
             </motion.div>
 
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Like what you see?</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">{t("projects.cta.title")}</h3>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities and interesting projects.
+              {t("projects.cta.description")}
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -445,7 +457,7 @@ export const ProjectsSection: FC = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300"
               >
-                Contact Me
+                {t("projects.cta.contactMe")}
                 <ArrowRight size={18} />
               </motion.a>
               
@@ -458,7 +470,7 @@ export const ProjectsSection: FC = () => {
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-medium border border-border text-foreground hover:border-primary hover:bg-primary/5 transition-all duration-300"
               >
                 <FaGithub size={18} />
-                View GitHub
+                {t("projects.cta.viewGithub")}
               </motion.a>
             </div>
           </div>

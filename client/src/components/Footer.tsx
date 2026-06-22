@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useI18n } from "@/hooks/useI18n";
 import { ArrowUp, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -9,22 +10,22 @@ type ContactInfo = { icon: React.ReactNode; text: string; href?: string };
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const ownerName = "IVO";
+  const { t } = useI18n();
 
   const socialLinks: SocialLink[] = [
-    { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/ivovallejos/", label: "LinkedIn" },
-    { icon: <FaGithub size={18} />, href: "https://github.com/Lazxrus", label: "GitHub" },
+    { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/ivovallejos/", label: t("footer.social.linkedin") },
+    { icon: <FaGithub size={18} />, href: "https://github.com/Lazxrus", label: t("footer.social.github") },
   ];
 
   const quickLinks: QuickLink[] = [
-    { name: "Home", href: "#hero" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
+    { name: t("footer.navigation.links.0.name"), href: t("footer.navigation.links.0.href") },
+    { name: t("footer.navigation.links.1.name"), href: t("footer.navigation.links.1.href") },
+    { name: t("footer.navigation.links.2.name"), href: t("footer.navigation.links.2.href") },
   ];
 
   const contactInfo: ContactInfo[] = [
-    { icon: <Mail size={16} />, text: "ivo.alejandro.vallejos@gmail.com", href: "mailto:ivo.alejandro.vallejos@gmail.com" },
-    { icon: <FaGithub size={16} />, text: "Github", href: "https://github.com/Lazxrus" },
+    { icon: <Mail size={16} />, text: t("footer.contact.email"), href: `mailto:${t("footer.contact.email")}` },
+    { icon: <FaGithub size={16} />, text: t("footer.contact.github"), href: "https://github.com/Lazxrus" },
   ];
 
   const containerVariants = {
@@ -63,9 +64,9 @@ export const Footer: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Branding */}
             <motion.div variants={itemVariants} className="space-y-4">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">{ownerName}</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">{t("footer.branding.name")}</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Data Engineer, Software Developer, Tech Enthusiast. Building innovative solutions and crafting seamless digital experiences.
+                {t("footer.branding.description")}
               </p>
               <div className="flex space-x-4 justify-center">
                 {socialLinks.map((social, index) => (
@@ -87,7 +88,9 @@ export const Footer: React.FC = () => {
 
             {/* Navigation */}
             <motion.div variants={itemVariants}>
-              <h4 className="text-gray-900 dark:text-white font-medium mb-4 text-sm uppercase tracking-wider">Navigation</h4>
+              <h4 className="text-gray-900 dark:text-white font-medium mb-4 text-sm uppercase tracking-wider">
+                {t("footer.navigation.title")}
+              </h4>
               <ul className="space-y-3">
                 {quickLinks.map((link, index) => (
                   <motion.li
@@ -108,7 +111,9 @@ export const Footer: React.FC = () => {
 
             {/* Contact */}
             <motion.div variants={itemVariants}>
-              <h4 className="text-gray-900 dark:text-white font-medium mb-4 text-sm uppercase tracking-wider">Contact</h4>
+              <h4 className="text-gray-900 dark:text-white font-medium mb-4 text-sm uppercase tracking-wider">
+                {t("footer.contact.title")}
+              </h4>
               <ul className="space-y-3">
                 {contactInfo.map((info, index) => (
                   <motion.li
@@ -142,13 +147,13 @@ export const Footer: React.FC = () => {
             viewport={{ once: true }}
           >
             <div>
-              <p>© {currentYear} Lazxrus. All rights reserved.</p>
+              <p>© {currentYear} Lazxrus. {t("footer.bottom.copyright")}</p>
             </div>
 
             <div className="flex items-center space-x-6">
               <motion.a
                 href="#hero"
-                aria-label="Back to top"
+                aria-label={t("footer.bottom.backToTop")}
                 className="p-2 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300"
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}

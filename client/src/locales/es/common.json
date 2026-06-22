@@ -120,5 +120,102 @@
       "advanced": "Intermedio",
       "expert": "Avanzado"
     }
+  },
+
+  "projects": {
+    "badge": "PROYECTOS",
+    "title": "Mi Trabajo",
+    "description": "Una selección de proyectos que demuestran mis habilidades en ingeniería de datos, desarrollo Python y resolución de problemas. Cada proyecto destaca mi capacidad de convertir datos complejos en insights accionables y soluciones escalables.",
+    "items": {
+      "0": {
+        "title": "Vante & Co.",
+        "category": "Comercio Electrónico",
+        "description": "Mercado de moda con recomendaciones de productos y experiencia de compra perfecta.",
+        "status": "En Vivo",
+        "highlights": [
+          "Catálogo de productos",
+          "Carrito de compras",
+          "Procesamiento de pagos"
+        ],
+        "tags": ["React", "Node.js", "Stripe", "Redis"]
+      },
+      "1": {
+        "title": "Converse Pro",
+        "category": "Comunicación en Tiempo Real",
+        "description": "Plataforma de chat con mensajería en tiempo real, intercambio de archivos y autenticación de usuarios.",
+        "status": "En Vivo",
+        "highlights": [
+          "Chat en tiempo real",
+          "Intercambio de archivos",
+          "Autenticación de usuarios"
+        ],
+        "tags": ["Socket.IO", "MongoDB", "React", "WebRTC"]
+      },
+      "2": {
+        "title": "Blogni AI",
+        "category": "Inteligencia Artificial",
+        "description": "Plataforma de generación de contenido impulsada por IA con soporte multiidioma.",
+        "status": "En Vivo",
+        "highlights": [
+          "Generación de contenido con IA",
+          "Multiidioma",
+          "Cuentas de usuario"
+        ],
+        "tags": ["Next.js", "Gemini AI", "Clerk Auth", "Redis"]
+      }
+    },
+    "categories": {
+      "all": "Todos",
+      "healthcare": "SaaS de Salud",
+      "ecommerce": "Comercio Electrónico",
+      "communication": "Comunicación en Tiempo Real",
+      "ai": "Inteligencia Artificial",
+      "fintech": "FinTech",
+      "foodtech": "FoodTech",
+      "hrtech": "HR Tech"
+    },
+    "buttons": {
+      "featured": "Destacado",
+      "liveDemo": "Demo en Vivo",
+      "comingSoon": "Próximamente",
+      "code": "Código",
+      "viewMore": "Ver Más Proyectos",
+      "showLess": "Mostrar Menos"
+    },
+    "cta": {
+      "badge": "Ponte en Contacto",
+      "title": "¿Te gusta lo que ves?",
+      "description": "Siempre estoy abierto a discutir nuevas oportunidades y proyectos interesantes.",
+      "contactMe": "Contáctame",
+      "viewGithub": "Ver GitHub"
+    }
+  },
+
+  "footer": {
+    "branding": {
+      "name": "IVO",
+      "description": "Ingeniero de Datos, Desarrollador de Software, Entusiasta de la Tecnología. Construyendo soluciones innovadoras y creando experiencias digitales fluidas."
+    },
+    "navigation": {
+      "title": "Navegación",
+      "links": [
+        { "name": "Inicio", "href": "#hero" },
+        { "name": "Sobre Mí", "href": "#about" },
+        { "name": "Proyectos", "href": "#projects" }
+      ]
+    },
+    "contact": {
+      "title": "Contacto",
+      "email": "ivo.alejandro.vallejos@gmail.com",
+      "github": "Github"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    },
+    "bottom": {
+      "copyright": "Todos los derechos reservados.",
+      "backToTop": "Volver al inicio"
+    }
   }
 }

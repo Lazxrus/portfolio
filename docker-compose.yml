@@ -6,4 +6,7 @@ services:
     container_name: my-portfolio
 
 # RUN ABOVE EVERY TIME YOU MAKE CHANGES TO THE CODE TO SEE THE CHANGES REFLECTED IN THE CONTAINER
-# docker compose down && docker compose up --build
+# docker compose down && docker compose up -d --build
+
+# To stop the container, use:
+# docker compose down

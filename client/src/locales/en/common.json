@@ -120,5 +120,102 @@
       "advanced": "Advanced",
       "expert": "Expert"
     }
+  },
+
+  "projects": {
+    "badge": "PROJECTS",
+    "title": "My Work",
+    "description": "A selection of projects showcasing my skills in data engineering, Python development, and problem-solving. Each project highlights my ability to turn complex data into actionable insights and scalable solutions.",
+    "items": {
+      "0": {
+        "title": "Vante & Co.",
+        "category": "E-commerce",
+        "description": "Fashion marketplace with product recommendations and seamless checkout experience.",
+        "status": "Live",
+        "highlights": [
+          "Product catalog",
+          "Shopping cart",
+          "Payment processing"
+        ],
+        "tags": ["React", "Node.js", "Stripe", "Redis"]
+      },
+      "1": {
+        "title": "Converse Pro",
+        "category": "Real-time Communication",
+        "description": "Chat platform with real-time messaging, media sharing, and user authentication.",
+        "status": "Live",
+        "highlights": [
+          "Real-time chat",
+          "Media sharing",
+          "User authentication"
+        ],
+        "tags": ["Socket.IO", "MongoDB", "React", "WebRTC"]
+      },
+      "2": {
+        "title": "Blogni AI",
+        "category": "Artificial Intelligence",
+        "description": "AI-powered content generation platform with multi-language support.",
+        "status": "Live",
+        "highlights": [
+          "AI content generation",
+          "Multi-language",
+          "User accounts"
+        ],
+        "tags": ["Next.js", "Gemini AI", "Clerk Auth", "Redis"]
+      }
+    },
+    "categories": {
+      "all": "All",
+      "healthcare": "Healthcare SaaS",
+      "ecommerce": "E-commerce",
+      "communication": "Real-time Communication",
+      "ai": "Artificial Intelligence",
+      "fintech": "FinTech",
+      "foodtech": "Food Tech",
+      "hrtech": "HR Tech"
+    },
+    "buttons": {
+      "featured": "Featured",
+      "liveDemo": "Live Demo",
+      "comingSoon": "Coming Soon",
+      "code": "Code",
+      "viewMore": "View More Projects",
+      "showLess": "Show Less"
+    },
+    "cta": {
+      "badge": "Get In Touch",
+      "title": "Like what you see?",
+      "description": "I'm always open to discussing new opportunities and interesting projects.",
+      "contactMe": "Contact Me",
+      "viewGithub": "View GitHub"
+    }
+  },
+
+  "footer": {
+    "branding": {
+      "name": "IVO",
+      "description": "Data Engineer, Software Developer, Tech Enthusiast. Building innovative solutions and crafting seamless digital experiences."
+    },
+    "navigation": {
+      "title": "Navigation",
+      "links": [
+        { "name": "Home", "href": "#hero" },
+        { "name": "About", "href": "#about" },
+        { "name": "Projects", "href": "#projects" }
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "ivo.alejandro.vallejos@gmail.com",
+      "github": "Github"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    },
+    "bottom": {
+      "copyright": "All rights reserved.",
+      "backToTop": "Back to top"
+    }
   }
 }
