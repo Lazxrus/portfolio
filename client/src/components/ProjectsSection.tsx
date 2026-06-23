@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { useState, useRef} from "react";
 import { FaGithub } from 'react-icons/fa';
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronUp, Star, Code, Sparkles, Zap, Play, Eye, X } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
@@ -30,6 +30,10 @@ export const ProjectsSection: FC = () => {
   const [selectedVideo, setSelectedVideo] = useState<Project | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setActiveFilter(t("projects.categories.all"));
+  }, [t]);
 
   // Projects array with translations
   const projects: Project[] = [
